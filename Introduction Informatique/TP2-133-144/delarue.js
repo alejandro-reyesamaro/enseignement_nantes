@@ -1,0 +1,34 @@
+//Travail, jeu pong de Maxence GUILHIN et Laetitia DELARUE
+
+// Jeu pong
+
+
+function draw(c) {
+  Initialiser();
+  Rectangle(0,0,800,400,'blue');
+  CerclePlein(posx,posy,10,'black');
+  RectanglePlein(10,mouseY,5,100,'red');
+  posx = posx + dep_x;
+  posy = posy + dep_y;
+  if (posy<=mouseY+100 && posy>=mouseY && posx<=10)
+  {
+    dep_x = -1*dep_x;
+    dep_y = -1*dep_y;
+  }
+  if (posx > 800 || posx < 0)
+  { dep_x = -1*dep_x;
+   }
+  if (posy > 400 || posy < 0)
+  { dep_y = -1*dep_y;}
+  
+}
+
+function Keypressed(c) {
+  noLoop();
+}
+var posx,poxy, dep_x, dep_y;
+posx=100;
+posy=100;
+dep_x=6;
+dep_y=6;
+Loop(-1);

@@ -1,0 +1,104 @@
+//DUMAST Anthony
+//DORE Thomas
+
+// Programme Calcule âge
+// Déclarations
+var jour, mois, annee, age; // annee: entier, mois: entier, jour: entier et age: entier
+
+//Debut
+//Saisies
+jour=Saisie('jour de naissance');
+mois=Saisie('mois de naissance en nombre');
+annee=Saisie('annee de naissance');
+
+//Calculs
+age=2020-annee;
+Ecrire('Au 31 décembre 2020 vous aurez '+age+'ans');
+age=2000-annee;
+Ecrire('Au 31 décembre 2000 vous aviez '+age+'ans');
+if(mois<=8){
+  age=2000-annee;
+}else{
+  age=1999-annee;
+}
+Ecrire('Au 31 août 2000 vous aviez '+age+'ans');
+if(mois==8){
+  if(jour<=15){
+    age=2000-annee;
+  }else{
+    age=1999-annee;
+  }
+}if(mois<8){
+  age=2000-annee;
+}if(mois>8){
+  age=1999-annee;
+}
+
+//Affichage
+
+Ecrire('Au 15 août 2000 vous aviez '+age+'ans');
+
+//Tests réalisés
+/*
+année=1998, mois=11, jour=20 : age au 31 decembre 2020 vaut 22ans
+                               age au 31 decembre 2000 vaut 2ans
+                               age au 31 aout 2000 vaut 1an
+                               age au 15 aout 2000 vaut 1an
+année=1997, mois=8, jour=15 : age au 31 decembre 2020 vaut 23ans
+                              age au 31 decembre 2000 vaut 3ans
+                              age au 31 aout 2000 vaut 3ans
+                              age au 15 aout 2000 vaut 3ans
+année=1998, mois=8, jour=16 : age au 31 decembre 2020 vaut 22ans
+                              age au 31 decembre 2000 vaut 2ans
+                              age au 31 aout 2000 vaut 2ans
+                              age au 15 aout 2000 vaut 1an
+année=1998, mois=7, jour=22 : age au 31 decembre 2020 vaut 22ans
+                              age au 31 decembre 2000 vaut 2ans
+                              age au 31 aout 2000 vaut 2ans
+                              age au 15 aout 2000 vaut 2ans
+année=1998, mois=10, jour=22 : age au 31 decembre 2020 vaut 22ans
+                               age au 31 decembre 2000 vaut 2ans
+                               age au 31 aout 2000 vaut 1an
+                               age au 15 aout 2000 vaut 1an
+*/
+
+//FIN
+
+
+____________________________________________________________________
+
+
+// Programme Tortue logo
+// Déclarations
+var n, i, cote; // n: entier, i: entier et cote: entier
+
+//Debut
+//Placer la figure afin de voir le polygone en entier
+Deplacer(400,400);
+
+//Saisies
+n=Saisie('Saisir n');
+cote=Saisie('Saisir la taille d un côté');
+
+//Calculs
+for(i=1;i<=n;i=i+1){
+  Avancer(cote);
+  Droite(360/n);
+}
+
+
+//Tests réalisés
+/*
+Pour n<3: on voit un segment
+Pour n=3: on voit un triangle
+Pour n=4: on voit un carré
+Pour n=8: on voit un octogone
+*/
+
+//FIN
+
+
+____________________________________________________________________
+
+
+//

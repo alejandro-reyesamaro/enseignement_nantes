@@ -1,0 +1,41 @@
+// Javascript code here
+
+function jours(mois) {
+  var t = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return t[mois - 1];
+}
+
+function bissextile(an) {
+  return an % 400 == 0 || (an % 4 == 0 && an % 100 != 100);
+}
+
+// a)
+
+function afficher(jour, mois, an) {
+  if (jour < 10) jour = "0" + jour;
+  if (mois < 10) mois = "0" + mois;
+  Ecrire(jour + "/" + mois + "/" + an);
+}
+
+// b)
+function lendemain(jour, mois, an) {
+  jour++;
+  var m_jours = jours(mois);
+  if (mois == 2 && bissextile(an)) m_jours++;
+  if (jour > m_jours) {
+    jour = 1;
+    mois++;
+  }
+  if (mois > 12) {
+    mois = 1;
+    an++;
+  }
+  afficher(jour, mois, an);
+}
+
+var jour = SaisieEntier('Day');
+var mois = SaisieEntier('Month');
+var an = SaisieEntier('Year');
+
+afficher(jour, mois, an);
+lendemain(jour, mois, an);

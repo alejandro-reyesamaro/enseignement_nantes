@@ -1,0 +1,59 @@
+\begin{thebibliography}{1}
+
+\bibitem{IPM:compumat}
+Reyes A. and Kakes A.
+\newblock Implementación de un método primal - dual de punto interior para la
+  resolución del problema de programación lineal.
+\newblock {\em Memorias del X Congreso de Matemática y Computación COMPUMAT
+  2007}, 2007.
+
+\bibitem{reg:IPMv1}
+Reyes-Amaro A.
+\newblock Ipm v1.0. tool to solve the linear programming problem.
+  (interior-point methods), 2010.
+\newblock Copyright (Software).
+
+\bibitem{IPM:ne}
+Reyes-Amaro A. and Kakes A.
+\newblock Implementación de un método primal - dual de punto interior para la
+  resolución del problema de programación lineal.
+\newblock {\em Boletín de la Sociedad Cubana de Matemática y Computación}, 5,
+  2007.
+\newblock ISSN: 1728-6042 RPNS 2017.
+
+\bibitem{IPM:iwor}
+Reyes-Amaro A. and Kakes A.
+\newblock Implementación de un método primal - dual de punto interior para la
+  resolución del problema de programación lineal.
+\newblock {\em Memorias del XIV Congreso Latino Ibero Americano de
+  Investigación de Operaciones}, 2008.
+
+\bibitem{reg:neurohipot}
+Reyes-Amaro A. and Cordero Y.
+\newblock Neurohipot v1.0. diagnosis system of dementia in the elderly, 2010.
+\newblock Copyright (Software).
+
+\bibitem{MSC:compumat}
+Reyes-Amaro A.~Mesejo A. and Jaume i~Capó~A.
+\newblock Movimiento óptimo de una cadena cinemática hacia un objetivo entre
+  obstáculos.
+\newblock {\em Memorias del XII Congreso de Matemática y Computación COMPUMAT
+  2011}, 2011.
+\newblock ISBN: 978-959-250-658-9.
+
+\bibitem{MSC:info}
+Reyes-Amaro A.~Mesejo A. and Jaume i~Capó~A.
+\newblock Planificación de camino para una cadena cinemática aplicando filtros
+  de partículas dentro del espacio libre de configuración.
+\newblock {\em Memorias del evento Informática 2011}, 2011.
+\newblock (CC1093) ISBN: 978-959-7213-01-7.
+
+\bibitem{MSC:dtr4all}
+Reyes-Amaro A. Fadraga-González Y. Vera-Pérez O. L. Domínguez-Campillo E.
+  NodarseRabelo J. Mesejo-Chiong A. Moyà-Alcover B. and Jaume i~Capó~A.
+\newblock Rehabilitation of patients with motor disabilities using computer
+  vision based techniques.
+\newblock {\em Journal of Accessibility and Design for All}, 2011.
+\newblock ISSN: 2013-7087.
+
+\end{thebibliography}

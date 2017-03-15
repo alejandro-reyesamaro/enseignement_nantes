@@ -1,0 +1,67 @@
+//Ex 5
+function loups(N) {
+  var gen = 0;
+  while (N > 0) {
+    gen++;
+    N = N + 15 * N / 100 - 25;
+    if (gen >= 100)
+    {
+      Ecrire("Stop !!");
+      break;      
+    }
+  }
+  Ecrire(gen);
+}
+loups(150);
+
+//Ex 6-a)
+function yaourt(N) {
+  var h = 0;
+  var deb_N = N;
+  while (N <= 2*deb_N) {
+    h++;
+    N = N + 2.5 * N / 100;
+  }
+  Ecrire(h);
+}
+var l = SaisieEntier("Bacteries");
+yaourt(l);
+
+//Ex 6-b)
+function yaourt(N) {
+  var h = 0;
+  var deb_N = N;
+  var mort = 0;
+  while (mort <= 20 * deb_N / 100) {
+    h++;
+    mort = mort + 10 * N / 100;
+    N = N - mort;
+  }
+  Ecrire(h);
+}
+yaourt(100);
+
+//Ex 7
+function loups(X, Y, t) {
+  
+  var d = 0.04;
+  var b = 0.0005;
+  var u = 0.1;
+  var g = 0.2;
+  
+  var vx = d - b*Y;
+  var vy = u*b*X - g;
+  
+  var X_ = X;
+  var Y_ = Y;
+  
+  for(var i = 0; i < t; i++) {
+    X_ = Math.round(X + vx*X);
+    Y_ = Math.round(Y + vy*Y);
+    Ecrire((i+1) + ": " + X_ + " - " + Y_);
+    X = X_;
+    Y = Y_;
+  }
+}
+loups(10000, 10, 5);
+

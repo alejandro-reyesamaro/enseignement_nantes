@@ -1,0 +1,15 @@
+13 2
+53 46 16 28 96 84 32 21 15 22 41 53 66
+4 A B C D
+7 A B C D E F G 
+4 A B C D
+9 A B C D E F G J K
+8 B D E F G I J K
+8 B D E F G I J K
+9 B D E F G H I J K
+7 G H I J K L M
+8 E F G H I J K L
+9 D E F G H I J K L
+9 D E F G H I J K L
+6 H I J K L M
+3 H L M

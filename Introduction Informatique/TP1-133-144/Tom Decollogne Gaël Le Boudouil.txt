@@ -1,0 +1,68 @@
+// Calcul d'âge
+var annee, mois, jour, x;
+
+// Début
+
+annee = Saisie('Votre année de naissance');
+mois = Saisie('Votre mois de naissance');
+jour = Saisie('Votre jour de naissance');
+Ecrire(2020-annee+' ans le 31 décembre 2020');
+Ecrire(2000-annee+' ans le 31 décembre 2000');
+x = 2000-annee;
+if(mois>=9)
+{
+x = x-1;
+}
+Ecrire(x+' ans le 31 août 2000');
+x = 2000-annee;
+if(mois>=9)
+{
+x = x-1;
+}
+if(mois==8 && jour>15)
+{
+x = x-1;
+}
+Ecrire(x+' ans le 15 août 2000');
+
+
+
+//Fin
+
+
+
+
+
+
+// Calendrier
+var annee, mois, x, y;
+
+//Début
+
+
+annee = Saisie('Année ?');
+mois = Saisie('Mois ?');
+
+if(mois!=2)
+{
+if(mois==1 && mois==3 && mois==5 && mois==7 && mois==8 && mois==10 && mois==12)
+{
+x = 31;
+}
+else
+{
+x = 30;
+}}
+else
+{
+if(((2012-annee) % 4)==0)
+{
+x = 29;
+}
+else
+{
+x = 28;
+}}
+Ecrire('Il y a '+x+' jours dans ce mois de l`année '+annee);
+
+//Fin

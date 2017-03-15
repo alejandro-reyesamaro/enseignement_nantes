@@ -1,0 +1,133 @@
+% Exam Template for UMTYMP and Math Department courses
+%
+% Using Philip Hirschhorn's exam.cls: http://www-math.mit.edu/~psh/#ExamCls
+%
+% run pdflatex on a finished exam at least three times to do the grading table on front page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These lines can probably stay unchanged, although you can remove the last
+% two packages if you're not making pictures with tikz.
+\documentclass[11pt]{exam}
+\RequirePackage{amssymb, amsfonts, amsmath, latexsym, verbatim, xspace, setspace}
+\RequirePackage{tikz, pgflibraryplotmarks}
+
+% By default LaTeX uses large margins.  This doesn't work well on exams; problems
+% end up in the "middle" of the page, reducing the amount of space for students
+% to work on them.
+\usepackage[margin=1in]{geometry}
+
+\usetikzlibrary{calc}
+\usepackage{graphicx}
+
+\usepackage{enumitem}
+
+% Here's where you edit the Class, Exam, Date, etc.
+\newcommand{\class}{Algorithmique et programmation}
+\newcommand{\term}{X2I0010, groupe 243}
+\newcommand{\examnum}{CC 3}
+\newcommand{\examdate}{13/03/2017}
+\newcommand{\timelimit}{30 Minutes}
+
+\usepackage{fancyvrb}
+\fvset{frame=single,framesep=1mm,fontfamily=courier,fontsize=\normalsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage{caption}
+
+% For an exam, single spacing is most appropriate
+\singlespacing
+% \onehalfspacing
+% \doublespacing
+
+% For an exam, we generally want to turn off paragraph indentation
+\parindent 0ex
+
+\begin{document} 
+
+\begin{tikzpicture}[overlay, remember picture]
+\node[anchor=north west, %anchor is upper left corner of the graphic
+      xshift=2.5cm, %shifting around
+      yshift=-0.8cm] 
+     at (current page.north west) %left upper corner of the page
+     {\includegraphics[width=16.4cm]{UN_logo.png}}; 
+\end{tikzpicture}
+
+% These commands set up the running header on the top of the exam pages
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+
+\begin{flushright}
+\begin{tabular}{p{2.8in} r l}
+\textbf{\class} && \\%\makebox[2in]{\hrulefill}\\
+\textbf{\term} &&\\
+\textbf{\examnum} &&\\
+\textbf{\examdate} &&\\
+\textbf{Dur\'{e}e: \timelimit} & \textbf{Nom, Pr\'enom:} & \makebox[2in]{\hrulefill}
+\end{tabular}\\
+\end{flushright}
+\rule[1ex]{\textwidth}{.1pt}
+
+\noindent\fbox{%
+\parbox{0.98\textwidth}{%
+\textbf{Pr\'eambule} : Aucun document autoris\'e. Calculatrices et t\'el\'ephones portables interdits. %Les exercices ne sont pas class\'es par difficult\'e croissante. Nombre de pages : \numpages.
+}%
+}
+\vspace{12pt}
+
+%\begin{minipage}[t]{3.7in}
+%\vspace{0pt}
+%\begin{itemize}
+%
+%\item \textbf{If you use a ``fundamental theorem'' you must indicate this} and explain
+%why the theorem may be applied.
+%
+%\item \textbf{Organize your work}, in a reasonably neat and coherent way, in
+%the space provided. Work scattered all over the page without a clear ordering will 
+%receive very little credit.  
+%
+%\item \textbf{Mysterious or unsupported answers will not receive full
+%credit}.  A correct answer, unsupported by calculations, explanation,
+%or algebraic work will receive no credit; an incorrect answer supported
+%by substantially correct calculations and explanations might still receive
+%partial credit.
+%
+%
+%\item If you need more space, use the back of the pages; clearly indicate when you have done this.
+%\end{itemize}
+%
+%Do not write in the table to the right.
+%\end{minipage}
+%\hfill
+%\begin{minipage}[t]{2.3in}
+%\vspace{0pt}
+%%\cellwidth{3em}
+%\gradetablestretch{2}
+%\vqword{Problem}
+%\addpoints % required here by exam.cls, even though questions haven't started yet.	
+%\gradetable[v]%[pages]  % Use [pages] to have grading table by page instead of question
+%
+%\end{minipage}
+%	\newpage % End of cover page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% See http://www-math.mit.edu/~psh/#ExamCls for full documentation, but the questions
+% below give an idea of how to write questions [with parts] and have the points
+% tracked automatically on the cover page.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{questions}
+
+% Basic question
+%\addpoints
+\question \'Ecrire une fonction pour d\'eterminer le nombre d'occurrences d'un \'el\'ement dans un tableau, de mani\`ere \textbf{r\'ecursive}.  
+
+\end{questions}
+\end{document}

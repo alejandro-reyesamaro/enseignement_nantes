@@ -1,0 +1,23 @@
+//Exercice 1 : Calcule age
+//Variables 
+var a, m, j, X, Y, Z, N;
+//debut
+a = Saisie ('saisir votre annee de naissance');
+m = Saisie ('saisir votre mois de naissance');
+j = Saisie ('saisir votre jour de naissance');
+X = 2020-a;
+Ecrire ('vous avez'+X+' ans le 31 decambre 2020');
+Y = 2000-a;
+Ecrire ('vous avez'+Y+' ans le 31 décembre 2000');
+Z = 2000-a;
+if (m<8) {
+Z = Z-1; Ecrire ('vous avez'+Z+' ans le 31 aout 2000');
+         }else{
+Z = Z; Ecrire ('vous avez '+Z+'ans le 31 aout 2000');}
+N = 2000-a;
+m = m+j;
+if (m<23) {
+N = N-1; Ecrire ('vous avez'+N+'ans le 15 aout 2000');
+         }else{
+N = N; Ecrire ('vous avez '+N+' ans le 31 aout 2000');}
+//Fin

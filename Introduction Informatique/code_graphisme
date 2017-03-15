@@ -1,0 +1,30 @@
+// Javascript code here
+var Cx = 600;
+var Cy = 500;
+var r = 220;
+var angle0 = 0;
+var angle = SaisieEntier("Angle");
+var angle1 = angle;
+var T = Tableau(360);
+
+InitialiserTableau(T, false);
+T[0] = true;
+
+function secante(cx, cy, r, ang1, ang2)
+{
+  var x0 = r * Math.cos(ang1 * Math.PI / 180) + cx;
+  var y0 = r * Math.sin(ang1 * Math.PI / 180) + cy;
+  
+  var x1 = r * Math.cos(ang2 * Math.PI / 180) + cx;
+  var y1 = r * Math.sin(ang2 * Math.PI / 180) + cy;
+  
+  Ligne(x0, y0, x1, y1, 'red');
+}
+
+while (!T[angle1]) {
+  T[angle1] = true;  
+  secante(Cx, Cy, r, angle0, angle1);
+  angle0 = angle1;
+  angle1 = (angle1 + angle) % 360;
+}
+secante(Cx, Cy, r, angle0, angle1);

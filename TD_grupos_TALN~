@@ -1,0 +1,19 @@
+//TD TALN
+
+includeFile('Library/libTALN.js');
+
+//Ex 2
+function frec(text) {
+  var let = Tableau(26);
+  for (var i = 0; i < Taille(let); i++) 
+    let[i] = 0;
+  for (var i = 0; i < Longueur(text); i++) {
+    var ascci = Caractere_vers_Ascii(Majuscule(text[i]));
+    var pos = ascci - 65;
+    if (pos >= 0 && pos < 26) let[pos]++;
+  }
+  return let;
+}
+var text = "Yo te quiero verso amigo porque cuando siento el pecho";
+var t = frec(text);
+AfficherTableau(t);

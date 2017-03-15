@@ -1,0 +1,57 @@
+// PARFAIT
+var n = SaisieEntier("Nombre: ");
+var divs = 1;
+for (var i = 2; i < n; i++)
+  if (n % i == 0)
+    divs = divs + i;
+
+if (divs == n)
+  Ecrire("Le nombre est parfait");
+else
+  Ecrire("Le nombre n'est pas parfait");
+---------------------------------------------
+// PREMIER
+var n = SaisieEntier("Nombre: ");
+var premier = true;
+
+for (var i = 2; i < Math.sqrt(n); i++)
+  if (n % i == 0){
+  	premier = false;
+    break;
+  }
+
+if (premier)
+  Ecrire("Le nombre est premier");
+else
+  Ecrire("Le nombre n'est pas premier");
+---------------------------------------------
+// FIBONACCI A
+var n = SaisieEntier("Nombre: ");
+var f1 = 0;
+var f2 = 1;
+var f3;
+
+for (var i = 3; i <= n; i++) {
+  f3 = f1 + f2;
+  f1 = f2;
+  f2 = f3;
+}
+
+Ecrire("Le N-ième Fibinacci est :" + f3);
+---------------------------------------------
+// FIBONACCI B
+var n = SaisieEntier("Nombre: ");
+var f1 = 0;
+var f2 = 1;
+var f3;
+
+while (f2 < n) {
+  f3 = f1 + f2;
+  f1 = f2;
+  f2 = f3;
+}
+
+if (f2 == n) 
+  Ecrire("Le nombre N est Fibinacci");
+else
+  Ecrire("Le nombre N n'est pas Fibinacci");

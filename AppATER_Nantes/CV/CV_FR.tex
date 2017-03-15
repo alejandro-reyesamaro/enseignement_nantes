@@ -1,0 +1,375 @@
+\documentclass[11pt,a4paper]{moderncv}
+
+%\usepackage[latin1]{inputenc}
+% moderncv themes
+\moderncvtheme[blue]{classic}                 % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+%\moderncvtheme[green]{classic}                % idem
+
+% character encoding
+\usepackage[latin1]{inputenc}   % replace by the encoding you are using
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}						% if you want to change the width of the column with the dates
+%\AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}  % only for the classic theme, if you want to change the width of your name placeholder (to leave more space for your address details
+%\AtBeginDocument{\recomputelengths}                     % required when changes are made to page layout lengths
+
+% personal data
+\firstname{Alejandro\\REYES AMARO}
+\familyname{} %{REYES AMARO} %{Reyes Amaro}
+\title{Curriculum Vitae}
+\address{2 rue de la Houssinière}{44322 Nantes}
+\mobile{(+33)666-372524}
+\phone{(+33)251-125831}
+%\fax{fax (optional)}
+\email{alejandro.reyes@univ-nantes.fr}
+%\homepage{homepage ()}
+%\extrainfo{Place and Date of Birth: \\La Habana, Cuba $|$ March 4, 1982}
+\photo[64pt]{QRCode} % '64pt' is the height the picture must be resized to and 'picture' is the name of the picture file; optional, remove the line if not wanted
+\quote{Avril 2016} %{Last Update \today}
+
+% to show numerical labels in the bibliography; only useful if you make citations in your resume
+\makeatletter
+\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+\newcommand{\mc}{Mots clés}
+\newcommand{\gt}{Sujets}
+\newcommand{\rt}{Sujet de recherche}
+\newcommand{\uh}{Universit\'{e} de la Havane}
+\newcommand{\uib}{Université des Iles Baléares}
+\newcommand{\un}{Universit\'e de Nantes}
+\newcommand{\lina}{Laboratoire d'Informatique de Nantes Atlantique (LINA)}
+\newcommand{\facHab}{Faculté de Mathématiques et d'Informatique. \uh, Cuba}
+\newcommand{\depthHab}{Département de Mathématiques Appliquées, \facHab}
+\newcommand{\depthNantes}{Département d'Informatique, \un}
+\newcommand{\matlab}{\textsc{Matlab}}
+%\renewcommand{\thebibliography}{Publicaciones}
+\makeatother
+
+\newcounter{rtaskno}
+\newcommand{\rtask}{%
+   \stepcounter{rtaskno}%
+   \thertaskno}
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Articulos},{Registros de Software}}
+
+\nopagenumbers{}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\section{Statut actuel}
+\cventry
+	{\textbf{Doctorant, depuis 2013}}
+	{\Large{\un}}{\lina}{}	
+	{Nantes, France}
+	{} %\underline{\textbf{Date de soutenance estimée}} : \textit{Décembre 2016}}
+	%\underline{\textbf{Résumé}} :La technologie multi-c\oe{}ur et les architectures massivement parallèles sont de plus en plus accessibles grâce aux matériels comme le Xeon Phi ou les cartes GPU. Ce choix d'architecture a été communément adoptée par les constructeurs pour suivre la loi de Moore. Or, ces nouvelles architectures impliquent de nouvelles manières de concevoir et implémenter les algorithmes exploitant complètement leur potentiel. Ceci est vrai en particulier pourdes solveurs de contraintes traitant de problèmes d'optimisation combinatoire.\\
+	%Dans ma thèse je propose un Langage pour de Solveurs Orienté Parallèle (POSL pour Parallel-Oriented Solver Language, prononcé "puzzle"), un cadre pour construire des solveurs	basés sur des méta-heuristiques interconnectées travaillant en parallèle, pour résoudre des Problèmes de Satisfaction de Contraintes (CSP). C'est une nouvelle approche qui conçoit les solveurs comme un ensemble de modules au but spécifique, écrit dans un langage orienté parallèle basé sur des opérateurs. Une caractéristique innovante de POSL est la possibilité de partager non seulement des informations mais aussi des comportements, permettant ainsi de modifier à chaud les solveurs. Notre cadre a été conçu pour construire des solveurs de contraintes et réduire l'effort de leur développement en proposant un mécanisme de réutilisation de code.\\
+	%L'avantage principal de POSL est de permettre aux développeurs d'implémenter rapidement des prototypes de différentes heuristiques et stratégies de communication parallèle pour résoudre des problèmes d'optimisation combinatoire, activité habituellement chronophage et techniquement complexe. Les expérimentations realisées démontrent que la sélection de la bonne stratégie de communication peut jouer un rôle important dans le processus de recherche de la solution.}
+
+\section{Études}
+\cventry
+	{2007 - 2011}
+	{Master en Sciences Mathématiques. Analyse Numérique}
+	{\facHab}{}{}
+	{\underline{\mc}: Cinématique inverse, recherche de chemin, détection de collision, filtre de \mbox{particules}. [C$\sharp$ .NET et \matlab]}
+\cventry
+	{2001 - 2006}
+	{Licence en Informatique}
+	{\facHab}{}{}
+	{\underline{\mc}: Méthodes primal--dual infaisable, point intérieur, programmation linéaire, \mbox{problèmes} à grande échelle. [C$\sharp$ .NET]}
+
+\section{Expérience}
+\subsection{Enseignement}
+\cventry
+	{2014 - 2016}
+	{Moniteur}
+	{\depthNantes}
+	{}{Total d'heures : 104}{\underline{\gt}: 
+	\begin{itemize}
+		\item \textbf{Encadrement TER de 2 étudiants du M2 ORO} \underline{Sujet} : Stratégies parallèles de solveurs de contraintes.
+		%\item[] Réflechir à différentes stratégies parallèles et à différentes heuristiques, de les implémenter via dans le langage POSL, de les tester sur différents problèmes de contraintes et d'analyser les résultats obtenus.
+		\item \textbf{Introduction à l'Informatique}: (L1, 32 heures de TP) [Commandes UNIX, javascript] % séquentialité, conditionnelles uniques et imbriquées, répétitives, fonctions, réseaux sociaux, traitement automatique des	langues, bioinformatique, graphismes, sons et algorithmes pour les maths en javascript.
+		\item \textbf{Initiation à l'algorithmique et aux outils \mbox{informatiques} usuels}: (L1, 40 heures de TD, prépation des sujets de CC) %Initiation à l'Algorithmique, séquentialité, conditionnelles uniques et imbriquées, répétitives, fonctions, réseaux sociaux, traitement automatique des	langues, bioinformatique. (prépation des sujets de CC)
+		\item \textbf{Algorithmique et programmation}: (L1, 32 heures de TP, prépation des sujets de CC) [C++] % Introduction à C++, sous-algorithmes, tableaux, fichiers. (prépation des sujets de CC)
+	\end{itemize}}
+\cventry
+	{2008 - 2013}
+	{Instructeur}
+	{\depthHab}
+	{}{Total d'heures : 528}{\underline{\gt}: 
+	\begin{itemize}
+		\item \textbf{Analyse numérique}: (L3, 160 heures de TD, 160 heures de TP) [\matlab] %Introduction à MATLAB, arithmétique flottante, réesolution des grands systèmes linéaires, méthodes itératives, interpolation et approximation,  intégration numérique, résolution numériques des edo.
+		\item \textbf{Programmation et Algorithmes, Programmation orientée-objet}: (L1, 96 heures de TD, 96 heures de TP, prépation des sujets de CC) [\matlab, C$\sharp$] %Introduction au langage C\#, programmation orientée-objet (classe et objet), types de données, opérateurs, structures de contrôle, variables et méthodes, héritage. (prépation des sujets de CC)
+		\item \textbf{Introduction à Message Passing Interface (MPI)}: (M2, 16 heures de CM) %Introduction et histoire, paradigme de passage des messages, structure général d'un programme MPI, environnement d'administration de routines, communication point à point, communication global, types dérivés, administration de groupes et communicateurs.
+	\end{itemize}}
+\cventry
+	{2003 - 2008}
+	{Enseignant en formation}
+	{\depthHab}
+	{}{Total d'heures : 240}{\underline{\gt}: 
+	\begin{itemize}
+		\item \textbf{Bases de l'informatique}: (32 heures de CM, prépation des sujets de CC) [Le systeme d'exploitation Windows, le paquet Microsoft Office] % (Word, Power Point et Excel). (prépation des sujets de CC)
+		\item \textbf{Introduction aux mathématiques avancés. Module 1 : Arithmétique et algèbre élémentaire}: (64 heures de CM, prépation des sujets de CC) %Calcul numérique, proportionnalité, expressions et fractions algébriques, équations linéaires et du second degré, Systèmes d'équations, inégalités, déterminants. (prépation des sujets de CC)
+		\item \textbf{Introduction aux mathématiques avancés. Module 3: Trigonométrie}: (64 heures de CM, prépation des sujets de CC). %Introduction à la trigonométrie, expressions trigonométriques, cercle trigonométrique, identités et équations trigonométriques (prépation des sujets de CC)
+		\item \textbf{Analyse numérique}: (80 heures de TP) [\matlab] %Introduction à MATLAB, arithmétique flottante, réesolution des grands systèmes linéaires, méthodes itératives, interpolation et approximation, intégration numérique, résolution numériques des edo.
+	\end{itemize}}
+
+\subsection{Recherche}
+\cventry
+	{2013 - jusqu'à présent}
+	{Membre de l'équipe Inria-TASC}
+	{\lina{}, \un}
+	{}{}{\underline{\rt}: Optimisation combinatoire, programation par contraintes, recherche locale, technologie multi-c\oe{}ur, architectures massivement parallèles.}
+\cventry
+	{2013 - 2014}
+	{Projet Ulysses}
+	{\lina, Université de Nantes - Université de Cork, Irlande}
+	{}{}{Technologie multi-c\oe{}ur, architectures massivement parallèles, recherche locale}
+\cventry
+	{2010 - 2012}
+	{Projet MAEC-AECID (A/023109/09, A/030033/10 et A2/037538/11)}
+	{\uh{} - \uib}
+	{}{}{\underline{\rt}: E-inclusion, interfaces basées sur la vision, vision par ordinateur, réhabilitation}
+\cventry
+	{2010 - 2013}
+	{Membre de l'équipe de recherche de Vision par Ordinateur}
+	{\facHab}
+	{}{}{\underline{\rt}: Vision par ordinateur, cinématique inverse, filtres de particules (Point Cloud Library (PCL), OpenNI, Kinet)}
+\cventry
+	{2003 - 2013}
+	{Membre de l'équipe de recherche d'Analyse Numérique}
+	{\facHab}
+	{}{}{\underline{\rt}: Programmation non--linéaire, approximation des fonctions, équations différentielles \& algèbre linéaire numérique}
+\cventry
+	{2005 - 2008}
+	{Membre de l'équipe de recherche d'Optimisation}
+	{\facHab}
+	{}{}{\underline{\rt}: Méthodes de point intérieur}
+	
+\subsection{Reviewer dans des journaux et des conférences}
+\cventry
+	{2016}
+	{Machine learning, Optimization and big Data} 
+	{(MOD'16)}{}{}{}
+	
+\subsection{Développement de logiciels}
+\cventry
+	{2014 - jusqu'à présent}
+	{POSL: Un langage orienté parallèle pour construire des solveurs basés sur méta-heuristiques}
+	{LINA Inria-TASC, \un}
+	{}{[C++, MPI]}
+	{\textcolor{blue}{\href{url}{https://github.com/alejandro-reyesamaro/POSL}}}
+\cventry
+	{2010 - 2013}
+	{Jeux sérieux pour la rééducation physique}
+	{AECID - \uib}
+	{}{[C++, OpenCV, PCL, caméra WEB, caméra RGB-D (Kinect)]}{}
+\cventry
+	{2011}
+	{Umbrella travel}
+	{Freelance}
+	{}{[C$\sharp$, LinQ, WCF, Microsoft SQL Server 2008]}{}
+\cventry
+	{2006 - 2008}
+	{Neurohipot v1.0: Système de diagnostic de la démence chez les personnes âgées}
+	{\depthHab. Hôpital universitaire Gregorio Mara\~n\'on, Espagne}
+	{}{[C$\sharp$, Microsoft Access Database]}{}
+
+
+%\subsection{Autres responsabilités administratives}
+%\cventry
+%	{2007 - 2012}
+%	{Technicien responsable du Laboratoire d'Applications et Softwares d'Optimisation (\textit{LASO})} 
+%	{\uh}{}{}{}
+%\cventry
+%	{2009 - 2013}
+%	{Président du jury d'évaluation du concours à l'Enseignement Supérieur} 
+%	{Sujet: Mathématique}{}{\uh}{}
+	
+
+%\subsection{Post-graduate courses taught}
+%\cventry
+%	{2012}
+%	{Parallel computing}
+%	{ School of Mathematics and Computer Science, UH}
+%	{}{}{
+%\underline{Topics}
+%\begin{itemize}
+%\item Introduction, history, parallel architectures
+%\item How to program computers in parallel? (openMP, MPI, F\#, MATLAB)
+%\item Parallel algorithms design
+%\item Hardware of the HPC Clusters: Architecture and classification
+%\end{itemize}
+%}
+
+%\subsection{Others}%{Miscellaneous}
+%	\cventry
+%		{2006 - Up to now}
+%		{Network Administrator}
+%		{LASO Laboratory (Laboratory of Optimization Software and Applications), MATCOM, UH}{}{}{}
+
+%\section{Research interests}
+%The following described aspects are taking into account the research topics of the Department of Computer Science (ETH Zurich):
+%\begin{itemize}
+%\item \textbf{Code's monitoring} 
+%\end{itemize}
+
+%\section{Other courses taken}
+%\cventry
+%	{2006}
+%	{Introduction to Differential Inclusions}
+%	{Ph.D. Alain Pietrus}
+%	{Universidad de Anti\-llas, Guyana Guadaloupe}
+%	{France}{}
+%\cventry
+%	{2006}
+%	{Introduction to Number Theory and Cryptography}
+%	{Ph.D. Michael Hortmann}
+%	{University of Bremen}
+%	{Germany}{}
+%\cventry
+%	{2006}
+%	{Automatic Differentiation: Introduction, Tools and Applications}
+%	{Ph.D. Andreas Griewank}
+%	{Humbolt University, Berlin}
+%	{Germany}{}
+%\cventry
+%	{2011}
+%	{Management Simulation}
+%	{M.Sc. Ksenia Koroleva}
+%	{}
+%	{Germany}{}
+
+\section{Publications}
+\subsection{Chapitre de livre}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Monfroy É. et Richoux F.}
+	{POSL: A Parallel-Oriented metaheuristic-based Solver Language}
+	{\textit{Springer book, à aparaître} : Recent developments of metaheuristics}
+	{}
+	{}
+\subsection{Journaux internationaux (avec comité de lecture)}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Mesejo-Chiong A., Ramón Mas-Sansó et Jaume-i-Capó A.}
+	{Using Particle Filters to Find Free Obstacle Trajectories for a Kinematic Chain}
+	{\textit{Dans} Studies in Informatics and Control, 22(2). ISSN: 1220-1766}
+	{2013}
+	{JCR : 0.375 (Q2)}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Fadraga-González Y., Vera-Pérez O. L., Domínguez-Campillo E., NodarseRabelo J., Mesejo-Chiong A., Moyà-Alcover B. and Jaume-i-Capó A.}
+	{Rehabilitation of patients with motor disabilities using computer vision based techniques}
+	{\textit{Dans} JACCES: Journal of accessibility and design for all. ISSN: 2013-7087}
+	{2011}
+	{}
+\subsection{Journaux nationaux (avec comité de lecture)}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, and Kakes A.}
+	{Implementación de un Método Primal - Dual de Punto Interior para la resolución del problema de programación lineal}
+	{\textit{Dans} Boletín de la Sociedad Cubana de Matemática y Computación, 5. ISSN: 1728-6042 RPNS-2017}
+	{2007}
+	{}
+%\subsection{Conférences internationales (avec comité de lecture et actes)}
+\subsection{Ateliers internationaux (avec comité de lecture et actes)}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Monfroy É. et Richoux F.}
+	{A Parallel-Oriented Language for Modeling Constraint-Based Solvers}
+	{Workshop on Multi/Many-core computing for parallel Metaheuristics(McM'2015), \textit{Dans} Proceedings of the 11th edition of the Metaheuristics International Conference (MIC 2015)}
+	{Springer, 2013}
+	{}
+\subsection{Conférences nationales (avec comité de lecture et actes)}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Monfroy É. et Richoux F.}
+	{Étude de stratégies parallèles de coopération 	avec POSL}
+	{\textit{accepté à :} Douzièmes Journées Francophones de Programmation par Contraintes (JFPC)}
+	{Montpellier, France, 2016}
+	{}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Monfroy É. et Richoux F.}
+	{Un langage orienté parallèle pour modéliser des solveurs de contraintes}
+	{\textit{Dans} Onzièmes Journées Francophones de Programmation par Contraintes (JFPC)}
+	{Bordeaux, France, 2015}
+	{}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Mesejo A., and Jaume-i-Capó A.}
+	{Movimiento óptimo de una cadena cinemática hacia un objetivo entre obstáculos}
+	{\textit{Dans} Memorias del XII Congreso de Matemática y Computación (COMPUMAT 2011)}
+	{ISBN: 978-959-250-658-9, 2011}
+	{}
+\cventry
+	{[\rtask]}{\underline{Reyes-Amaro A.}, Mesejo A. and Jaume-i-Capó A.}
+	{Planificación de camino para una cadena cinemática aplicando filtros de partículas dentro del espacio libre de configuración}
+	{\textit{Dans} Memorias de Informática 2011}
+	{(CC1093) ISBN: 978-959-7213-01-7, 2011}
+	{}
+\subsection{Ateliers nationaux (avec comité de lecture et actes)}
+\cventry
+	{[\rtask]}{Domínguez E., Manresa-Yee C. \underline{Reyes-Amaro A.}, Fadraga-González Y., Nodarse-Ravelo J.}{Validación de aplicaciones basadas en visión para la rehabilitación de pacientes con trastornos motores}
+	{\textit{Dans} Simposio sobre Aplicación de la Informática y la Matemática a la Rehabilitación y la Salud AIMRS 2011}{2011}{}
+	
+\section{Participations aux écoles et aux séminaires scientifiques}
+\cventry
+	{2015}
+	{8$^{th}$ Winter School on Hot Topics in Distributed Computing (HTDC'15)}
+	{}{}{Flaine, France}{}
+\cventry
+	{2014}
+	{11$^{th}$ Summer School on Modeling and Verification of Parallel Processes (MOVEP'14)}
+	{}{\'Ecole Centrale de Nantes}
+	{Nantes, France}{}
+\cventry
+	{2014}
+	{9$^{th}$ ACP Summer School on Practical Constraint Programming}
+	{}{Université de Bologne}
+	{Bologne, Italie}{}
+\cventry
+	{2011}
+	{XII Congrès sur les Mathématiques et l'Informatique. Compumat 2011}
+	{}{Université Central "Martha Abreu" de Las Villas}
+	{Santa Clara, Cuba}{}
+\cventry
+	{2011}
+	{École internationale d'été en économie et gestion}
+	{}{\uh}
+	{La Havane, Cuba}{}
+\cventry
+	{2010}
+	{École CIMPA - Problème Inverse et ses ppplications }
+	{}{Centre de Modélisation Mathématique. Université du Chili}
+	{Santiago de Chile, Chili}{}	
+			
+\section{Compétences informatiques}
+\subsection{Développement de logiciels}
+\cventry
+{$\star\star\star\star\star$}
+{Des années d'expérience de travail avec des langages de programmation: C$\sharp$, C/C++, Java/Javascript, \matlab, ASP.NET, HTML/CSS, SQL Server}{}{}{}{}
+\cventry
+{$\star\star\star\star$}
+{Bonne maîtrise de R}{}{}{}{}
+%\subsection{Systèmes de contrôle de version}
+%\cventry
+%{$\star\star\star$}
+%{Utilisateur intermédiaire de Git}{}{}{}{}
+\subsection{Outils de traitement de texte et contrôle de version}
+\cventry
+{$\star\star\star\star$}
+{Bonne maîtrise de Microsoft Office and \LaTeX}{}{}{}{}
+\cventry
+{$\star\star\star$}
+{Utilisateur intermédiaire de Git}{}{}{}{}
+%\cventry
+%{$\star\star$}
+%{Débutant dans GNU Emacs}{}{}{}{}
+
+\section{Langues \small{(Common European Framework of Reference (CEF))}}
+\cvlanguage{$\star\star\star\star\star$}{Espagnol}
+{Langue maternelle}
+\cvlanguage{$\star\star\star\star$}{Anglais}
+{Écoute: C1, Lecture: C1, Oral: C1, Écriture: C1}
+\cvlanguage{$\star\star\star\star$}{Français}
+{Écoute: C1, Lecture: C1, Oral: C1, Écriture: C1}	
+\end{document}

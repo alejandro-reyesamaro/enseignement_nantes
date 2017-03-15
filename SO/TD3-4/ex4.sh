@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ $# -ne 2 ]; then
+	echo "erreur : donnez 2 arguments." 1>&2
+	exit 1
+fi
+vieux=$1
+nouveau=$2
+for fich in *"${vieux}"; do
+	base='basename "$fich" "$vieux"'
+	mv "$fich" "$base$nouveau"
+	if [ $? -ne 0 ]; then
+		echo "je ne peux pas renommer \"$fich\" en \"$base$nouveau\"" 1>&2
+	fi
+done

@@ -1,0 +1,73 @@
+Exercice n°01:
+//Samba-Fouala Jean Théo E162005s
+//Naamane Youssef E160807q
+//Calcul âges
+
+//Variables
+var Annee,Mois,Jour,a,b,c,d;
+
+//Début :
+Annee=Saisie('Saisir l année de naissance?');
+Mois=Saisie('Mois de naissance? (En nombre)');
+Jour=Saisie('Jour de naissance ?');
+a=2020-Annee;
+b=2000-Annee;
+if (Mois<8) {
+  c=2000-Annee;
+}
+  else 
+{ 
+   c=2001-Annee;
+}
+if (Mois<8 || Mois==8 && Jour<15) {
+  d=2000-Annee;
+}
+  else
+{
+  d=2001-Annee;
+}
+Ecrire('Âge le 31/12/2020 :',a);
+Ecrire('Âge le 31/12/2000 :',b);
+Ecrire('Âge le 31/08/2000 :',c);
+Ecrire('Âge le 15/08/2000 :',d);
+//Fin
+
+//tests réalisés :
+//Annee=2002 Mois=8 Jour=15 Âges=18;0;0;0
+
+
+
+
+Exercice n°02:
+
+//Nombres de jours dans le mois
+
+//Variables
+var Mois, Annee;
+
+//Début:
+Mois=Saisie('Entrer le mois, en nombre');
+Annee=Saisie('Entrer l\'année en nombre');
+
+if (Mois%2==0)
+{  
+  if (Mois==2)
+  {
+    if ((Annee%4==0 && Annee%100==0) || (Annee%400==0))
+    {
+      Mois=28;
+  }
+    else
+    {
+      Mois=29;
+    }
+  }
+ else {
+    Mois=31; 
+  }
+}
+else {
+    Mois=31;
+}
+  Ecrire('Le Mois comporte ',Mois,' jours');
+  //Fin

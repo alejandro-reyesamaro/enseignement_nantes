@@ -1,0 +1,332 @@
+﻿// Pad
+var l;
+var L;
+l = 40;
+L = 40;
+//Sons
+//Les sons doivent être chargés dans le dossier interne d'Algoscript.
+//Melodie
+var melodie1, melodie2, melodie3, melodie4, melodie5, melodie1D, melodie1R, melodie2D, melodie2R;
+melodie1 = ChargerSon(readFile('Data/melodie1.wav'));
+melodie2 = ChargerSon(readFile('Data/melodie2.wav'));
+melodie3 = ChargerSon(readFile('Data/melodie3.wav'));
+melodie4 = ChargerSon(readFile('Data/melodie4.wav'));
+melodie5 = ChargerSon(readFile('Data/melodie5.wav'));
+melodie1D = ChargerSon(readFile('Data/melodie1D.wav'));;
+melodie1R=ChargerSon(readFile('Data/melodie1R.wav'));;
+melodie2D=ChargerSon(readFile('Data/melodie2D.wav'));;
+melodie2R=ChargerSon(readFile('Data/melodie2R.wav'));;
+
+//Bass
+var bass1, bass2, bass3;
+bass1 = ChargerSon(readFile('Data/bass1.wav'));
+bass2 = ChargerSon(readFile('Data/bass2.wav'));
+bass3 = ChargerSon(readFile('Data/bass3.wav'));
+//Kicks
+var kick1, kick2;
+kick1 = ChargerSon(readFile('Data/kick1.wav'));
+kick2 = ChargerSon(readFile('Data/kick2.wav'));
+//Hats
+var hat, cymbal1, cymbal2;
+hat = ChargerSon(readFile('Data/hat.wav'));
+cymbal1 = ChargerSon(readFile('Data/cymbal1.wav'));
+cymbal2 = ChargerSon(readFile('Data/cymbal2.wav'));
+//Snares
+var snare1, snare2, amen;
+snare1 = ChargerSon(readFile('Data/snare1.wav'));
+snare2 = ChargerSon(readFile('Data/snare2.wav'));
+amen = ChargerSon(readFile('Data/amen.wav'));
+//Effets
+var snare1D, snare1R, snare2D, snare2R;
+snare1R = ChargerSon(readFile('Data/snare1R.wav'));
+snare1D = ChargerSon(readFile('Data/snare1D.wav'));
+snare2R = ChargerSon(readFile('Data/snare2R.wav'));
+snare2D = ChargerSon(readFile('Data/snare2D.wav'));
+//Piano
+var piano = ChargerSon(readFile('Data/bouclepiano.wav'));
+//Fonction Graphique
+//Cette fonction constitue la base graphique de notre projet.
+
+function Graphique() {
+  var x;
+  var y;
+  var i;
+  x = 25;
+  y = 10;
+  y = y + 100;
+  for (i = 0; i < 5; i = i + 1) {
+    RectanglePlein(x, y, l, L, 'blue');
+    x = x + 50;
+  }
+  x = 75;
+  y = y + 100;
+  for (i = 0; i < 3; i = i + 1) {
+    RectanglePlein(x, y, l, L, 'red');
+    x = x + 50;
+  }
+  setCanvasFont('Times', '25pt', 'bold');
+  Texte(150, 50, 'ELECTRODUB', 'black')
+  Texte(75, 100, 'MELODIE', 'blue');
+  Texte(95, 200, 'BASSE', 'red');
+  //Ligne 1
+  var abscisse;
+  var ordonee;
+  abscisse = 35;
+  ordonee = 40;
+  ordonee = ordonee + 100;
+
+  Texte(abscisse, ordonee, 'A', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'Z', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'E', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'R', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'T', 'black');
+
+
+  //Ligne 2
+  abscisse = 85;
+  ordonee = ordonee + 100.
+  Texte(abscisse, ordonee, 'S', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'D', 'black');
+  abscisse = abscisse + 50;
+  Texte(abscisse, ordonee, 'F', 'black');
+
+
+  //Colonne 1
+  Texte(325, 100, 'HAT', 'grey');
+  x = 350;
+  y = 110;
+  for (i = 0; i <= 2; i = i + 1) {
+    RectanglePlein(x, y, l, L, 'grey');
+    y = y + 50;
+  }
+  Texte(360, 140, '8', 'black');
+  Texte(360, 190, 'I', 'black');
+  Texte(360, 240, 'K', 'black');
+  //Colonne 2
+  Texte(360, 80, 'SNARE', 'grey');
+  x = x + 50;
+  y = 110;
+  for (i = 0; i <= 2; i = i + 1) {
+    RectanglePlein(x, y, l, L, 'grey');
+    y = y + 50;
+  }
+  Texte(410, 140, '9', 'black');
+  Texte(410, 190, 'O', 'black');
+  Texte(410, 240, 'L', 'black');
+  //Colonne 3
+  Texte(450, 100, 'KICK', 'grey');
+  x = x + 50;
+  y = 110;
+  for (i = 0; i <= 1; i = i + 1) {
+    RectanglePlein(x, y, l, L, 'grey');
+    y = y + 50;
+
+  }
+  Texte(460, 140, '0', 'black');
+  Texte(460, 190, 'P', 'black');
+
+  //Effets
+  //Les effets ne sont disponibles que pour les snares dans cette version du projet
+  //Echo
+  CerclePlein(575, 130, 40, 'green');
+  Texte(545, 175, 'Echo', 'green');
+  CerclePlein(575, 200, 40, 'green');
+  Texte(545, 250, 'Reverb', 'green');
+  //Piano
+  RectanglePlein(260, 210, l, L, 'black');
+  Texte(265, 240, 'H', 'white');
+
+}
+//Fin fonction
+Graphique()
+//animation
+//Nous avons utilisé la fonction Keypressed de la manière suivante :
+//Quand on appuie sur une touche on appelle la fonction touche ( voir plus bas )
+// et un son est joué.
+
+function Keypressed(k) {
+  var p;
+  p = 110;
+  if (k == Caractere_vers_Ascii('A')) {
+    Touche(25, p, l, L, 'blue', 'A');
+    if (c1 == 'green' && c2 == 'green') {
+      melodie1.play();
+    } else {
+      if (c1 == 'yellow' && c2 == 'green') {
+        melodie1D.play();
+      } else {
+        if (c2 == 'yellow' && c1 == 'green') {
+          melodie1R.play();
+        }
+      }
+    }
+  }
+  if (k == Caractere_vers_Ascii('Z')) {
+    Touche(75, p, l, L, 'blue', 'Z');
+    if (c1 == 'green' && c2 == 'green') {
+      melodie1.play();
+    } else {
+      if (c1 == 'yellow' && c2 == 'green') {
+        melodie1D.play();
+      } else {
+        if (c2 == 'yellow' && c1 == 'green') {
+          melodie1R.play();
+        }
+      }
+    }
+  }
+  if (k == Caractere_vers_Ascii('E')) {
+    Touche(125, p, l, L, 'blue', 'E');
+    melodie3.play();
+  }
+  if (k == Caractere_vers_Ascii('R')) {
+    Touche(175, p, l, L, 'blue', 'R');
+    melodie4.play();
+  }
+  if (k == Caractere_vers_Ascii('T')) {
+    Touche(225, p, l, L, 'blue', 'T');
+    melodie5.play();
+  }
+  //2eme ligne
+  p = 210
+  if (k == Caractere_vers_Ascii('S')) {
+    Touche(75, p, l, L, 'red', 'S');
+    bass1.play();
+  }
+  if (k == Caractere_vers_Ascii('D')) {
+    Touche(125, p, l, L, 'red', 'D');
+    bass2.play();
+  }
+  if (k == Caractere_vers_Ascii('F')) {
+    Touche(175, p, l, L, 'red', 'F');
+    bass3.play();
+  }
+  //Piano
+  if (k == Caractere_vers_Ascii('H')) {
+    Touche(260, 210, l, L, 'green', 'H');
+    bouclepiano();
+  }
+}
+
+function Keypressed(k) {
+  //1ère colonne
+  if (k == Caractere_vers_Ascii('8')) {
+    Touche(350, 110, l, L, 'grey', '8');
+    hat.play();
+  }
+  if (k == Caractere_vers_Ascii('I')) {
+    Touche(350, 160, l, L, 'grey', 'I');
+    cymbal1.play();
+  }
+  if (k == Caractere_vers_Ascii('K')) {
+    Touche(350, 210, l, L, 'grey', 'K');
+    cymbal2.play();
+  }
+  //2ème colonne
+  if (k == Caractere_vers_Ascii('9')) {
+    Touche(400, 110, l, L, 'grey', '9');
+    if (c1 == 'green' && c2 == 'green') {
+      snare1.play();
+    } else {
+      if (c1 == 'yellow' && c2 == 'green') {
+        snare1D.play();
+      } else {
+        if (c2 == 'yellow' && c1 == 'green') {
+          snare1R.play();
+        }
+      }
+    }
+  }
+  if (k == Caractere_vers_Ascii('O')) {
+    Touche(400, 160, l, L, 'grey', 'O');
+    if (c1 == 'green' && c2 == 'green') {
+      snare2.play();
+    } else {
+      if (c1 == 'yellow' && c2 == 'green') {
+        snare2D.play();
+      } else {
+        if (c2 == 'yellow' && c1 == 'green') {
+          snare2R.play();
+        }
+      }
+    }
+  }
+  if (k == Caractere_vers_Ascii('L')) {
+    Touche(400, 210, l, L, 'grey', 'L');
+    amen.play();
+  }
+  //3ème colonne
+  if (k == Caractere_vers_Ascii('0')) {
+    Touche(450, 110, l, L, 'grey', '0');
+    kick1.play();
+  }
+  if (k == Caractere_vers_Ascii('P')) {
+    Touche(450, 160, l, L, 'grey', 'P');
+    kick2.play();
+  }
+}
+
+//La fonction touche est celle qui permet l'animation des rectangles
+
+function Touche(x, o, l, L, c, lettre) {
+  RectanglePlein(x, o, l, L, 'yellow');
+  Texte(x + 10, o + 30, lettre, 'black');
+  setTimeout(function() {
+    RectanglePlein(x, o, l, L, c);
+    Texte(x + 10, o + 30, lettre, 'black');
+  }, 200);
+}
+
+//Effets
+var c1, c2;
+c1 = 'yellow';
+c2 = 'yellow';
+
+function MouseClick(x, y) {
+  if (x >= 535 && x <= 615 && y >= 90 && y <= 170) {
+    CerclePlein(575, 130, 40, c1);
+    if (c1 == 'green') {
+      c1 = 'yellow';
+    } else {
+      c1 = 'green';
+    }
+  }
+  if (x >= 535 && x <= 615 && y >= 160 && y <= 240) {
+    CerclePlein(575, 200, 40, c2);
+    if (c2 == 'green') {
+      c2 = 'yellow';
+    } else {
+      c2 = 'green';
+    }
+  }
+}
+
+//Boucle Piano
+//Le piano nous sert de base. Il tourne en boucle jusqu'à ce que l'on réappuie sur la touche H
+/*function bouclepiano(){
+  setTimeout(function() {
+    piano.play();
+  }, 8500);
+}
+/*Cette fonction de fonctionne pas
+var etat=0;
+function Keypressed(k){
+if (k == Caractere_vers_Ascii('H')) {
+    Touche(260, 210, l, L, 'green', 'H');
+    bouclepiano();
+    etat = etat+1;
+  }
+}
+
+function bouclepiano() {
+  while(etat/2!=0){
+      piano.play();
+}
+}
+setInterval(bouclepiano,9000);
+*/

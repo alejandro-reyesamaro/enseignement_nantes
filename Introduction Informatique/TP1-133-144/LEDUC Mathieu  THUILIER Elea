@@ -1,0 +1,13 @@
+
+LEDUC Mathieu  THUILIER Elea
+
+
+//Algorithme verlan
+//variables
+var n;
+while (n!='.'){
+n = Saisie('lettre');
+Ecrire(n);
+}
+
+

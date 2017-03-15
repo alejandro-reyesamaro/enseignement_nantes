@@ -1,0 +1,112 @@
+//TD TALN
+
+includeFile('Library/libTALN.js');
+
+//Ex 2
+function frec(text) {
+  var let = Tableau(26);
+  for (var i = 0; i < Taille(let); i++) 
+    let[i] = 0;
+  for (var i = 0; i < Longueur(text); i++) {
+    var ascci = Caractere_vers_Ascii(Majuscule(text[i]));
+    var pos = ascci - 65;
+    if (pos >= 0 && pos < 26) let[pos]++;
+  }
+  return let;
+}
+var text = "Yo te quiero verso amigo porque cuando siento el pecho";
+var t = frec(text);
+AfficherTableau(t);
+
+//Ex 3
+function ToUpperCase(car)
+{
+	if ("éèêë".indexOf(car) != -1) {car = "e";}
+	else if ("àâäá".indexOf(car) != -1) {car = "a";}
+	else if ("îïí".indexOf(car) != -1) {car = "i";}
+	else if ("ôöó".indexOf(car) != -1) {car = "o";}
+	else if ("ùûüú".indexOf(car) != -1) {car = "u";}
+	else if ("ç".indexOf(car) != -1) {car = "c";}  
+	else if ("ñ".indexOf(car) != -1) {car = "n";}
+	return(car.toUpperCase());
+}
+
+function mots(text) {
+  var word_count = 0;
+  var word = true;
+  for (var i = 0; i < Longueur(text); i++) {
+  	var ascci = Caractere_vers_Ascii(ToUpperCase(text[i]));
+    if ((ascci >= 65 && ascci <= 90)||(ascci >= 48 && ascci <= 57))
+      word = true;
+    else
+    {
+      if(word)
+      {
+      	word = false;
+        word_count ++;
+      }
+    }    
+  }
+  return word_count;
+}
+
+var text = "Nous sommes le 11 octobre 2008. Avant-hier Jean-Claude a épluché dix-huit pommes de terre.";
+Ecrire(mots(text));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Ex 4
+//returns 0 if the word is in lexique. 1 otherwise
+function add(mot, tab, pos, occur)
+{
+  var dedans = false;
+  for (var i = 0; i < pos; i++) 
+    if(tab[i] == mot)
+    {
+      occur[i] ++;
+      return 0;
+    }
+  tab[pos] = mot;
+  occur[pos] =1;
+  return 1;
+}
+
+function mots(text) {  
+  var lexique = [""]; //Tableau(5);
+  var occur = [0]; //Tableau(5);  
+  var word_count = 0;
+  var word = "";
+  for (var i = 0; i < Longueur(text); i++) {
+  	var ascci = Caractere_vers_Ascii(ToUpperCase(text[i]));
+    if ((ascci >= 65 && ascci <= 90)||(ascci >= 48 && ascci <= 57))
+      word += text[i];
+    else
+    {
+      if(word != "")
+      {        
+        var count = add(word, lexique, word_count, occur)
+        word_count += count;
+        word = "";
+      }
+    }    
+  }
+  
+  for (var i = 0; i < word_count; i++)
+  {
+    Ecrire(lexique[i] + "(" + occur[i] + ")");
+  }
+}
+
+var text = "Le valet de chambre accuse la cuisinière, qui accuse la lingère, qui accuse les deux autres.";
+mots(text)
