@@ -182,11 +182,8 @@ int main(int argc, char *argv[])
 	printf("z = %lf\n",z);
 	
 	for(i = 1; i <= p.nbPM; i++) 
-	{
-	 	for (j = 1; j <= p.nbPM; j++)
-			printf("x[%d][%d] = %d, ", i, j,(int)(x[(i-1)*p.nbPM + j] + 0.5)); /* un cast est ajouté, x[i] pourrait être égal à 0.99999... */ 
-		printf("\n");
-	}
+	 for (j = 1; j <= p.nbPM; j++)
+		printf("x[%d][%d] = %d, ", i, j,(int)(x[(i-1)*p.nbPM + j] + 0.5)); /* un cast est ajouté, x[i] pourrait être égal à 0.99999... */ 
 	puts("");
 
 	/* libération mémoire */

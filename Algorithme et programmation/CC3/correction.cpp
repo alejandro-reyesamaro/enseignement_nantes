@@ -1,5 +1,7 @@
 #include <iostream>
 
+/* C.C. 3 */
+
 struct Tableau
 {
     int T[7] = {1, 3, 4, 1, 1, 5, 1};

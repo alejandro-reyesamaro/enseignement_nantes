@@ -1,0 +1,211 @@
+#include <stdio.h>            /* C input/output                       */
+#include <stdlib.h>           /* C standard library                   */
+#include <glpk.h>             /* GNU GLPK linear/mixed integer solver */
+#include <string.h>
+
+
+
+typedef struct {
+	int nbEmp; 		// Nb d'employes
+	int nbMach; 		// Nb de machines
+	int nbcontr; 		// Nb de contraintes 
+	int *productivite;	// Tableau des productivite
+	int **contr; 		// Matrice creuse des contraintes
+	int *sizeContr; 	// Tableau des nombres de variables dans chacune des contraintes
+	int *droite; 		// Tableau des valeurs des membres de droites des contraintes
+} donnees;
+
+// Lecture des donnees
+void lecture_data(char *file, donnees *p)
+{
+
+	FILE *fin; 
+	int i,j;	
+	int val;
+	
+	fin = fopen(file,"r"); 
+
+	//  on lit la premiere ligne du fichier
+	fscanf(fin,"%d",&val);
+	p->nbEmp = val;
+	fscanf(fin,"%d",&val);
+	p->nbMach = val;
+	fscanf(fin,"%d",&val);
+	p->nbcontr = val;
+	p->productivite = (int *) malloc (p->nbEmp*p->nbMach * sizeof(int));
+	p->droite = (int *) malloc (p->nbcontr * sizeof(int));
+	p->sizeContr = (int *) malloc (p->nbcontr * sizeof(int));
+	p->contr = (int **) malloc (p->nbcontr * sizeof(int *)); 
+
+// Deuxieme ligne du fichier
+	for(i = 0;i < p->nbEmp*p->nbMach;i++)
+	{
+		fscanf(fin,"%d",&val);
+		p->productivite[i] = val;
+	}
+
+// On lit ensuite les contraintes du probleme
+	for(i = 0;i < p->nbcontr;i++) 
+	{
+		
+		fscanf(fin,"%d",&val);
+		p->sizeContr[i] = val;
+		p->contr[i] = (int *) malloc (p->sizeContr[i] * sizeof(int));
+		
+		// On lit les indices des variables intervenant dans la contrainte
+		for(j = 0;j < p->sizeContr[i];j++)
+		{
+			fscanf(fin,"%d",&val);
+			p->contr[i][j] = val;
+		}
+		
+		// Lecture du membre de droite de la contrainte
+		fscanf(fin,"%d",&val);
+		p->droite[i] = val; 
+	}
+		
+	fclose(fin); // Fermeture du fichier
+}
+
+int main(int argc, char *argv[])
+{
+
+
+  // Donnees du probleme 
+  donnees p;
+  // declaration des variables
+  glp_prob *prob; 
+  int *ligne;
+  int *colonne;
+  double *valeur; 
+
+  // donner des noms aux variables et aux contraintes
+  char **nomcontr;
+  char **numero;	
+  char **nomvar; 
+
+  // variables recuperant les resultats de la resolution du probleme 
+  double z; 
+  double *x; 
+
+  /* autres declarations */ 
+  int i,j;
+  int nbcreux; // nombre d'elements de la matrice creuse
+  int pos; // compteur utilise dans le remplissage de la matrice creuse
+  
+	
+		
+  /* Chargement des donnees a partir d'un fichier */	
+  lecture_data(argv[1],&p);
+  int nbvar = p.nbEmp*p.nbMach; //nombre de variables
+
+  /* creation du probleme */
+  prob = glp_create_prob(); /* allocation memoire pour le probleme */ 
+  glp_set_prob_name(prob, "productivite"); /* affectation d'un nom */
+  glp_set_obj_dir(prob, GLP_MAX); /* Probleme de maximisation*/
+
+  /* remplissage du probleme */
+  // Declaration du nombre de contraintes 
+  glp_add_rows(prob, p.nbcontr); 
+  nomcontr = (char **) malloc (p.nbcontr * sizeof(char *));
+  numero = (char **) malloc (p.nbcontr * sizeof(char *));
+
+  /* On commence par preciser les bornes sur les contraintes */
+	for(i=1;i<=p.nbcontr/2;i++)
+	{
+		
+		nomcontr[i - 1] = (char *) malloc (38 * sizeof(char)); 
+		numero[i - 1] = (char *) malloc (4  * sizeof(char)); 
+		strcpy(nomcontr[i-1], "une machine est affecte a la personne ");
+		sprintf(numero[i-1], "%d", i);
+		strcat(nomcontr[i-1], numero[i-1]); 				
+		glp_set_row_name(prob, i, nomcontr[i-1]); // Affectation du nom a la contrainte i 
+		
+		// les bornes sur les contraintes 
+		glp_set_row_bnds(prob, i, GLP_FX, p.droite[i-1], 0.0);
+	}	
+	for(i=(p.nbcontr/2)+1;i<=p.nbcontr;i++)
+	{
+		nomcontr[i - 1] = (char *) malloc (38 * sizeof(char)); 
+		numero[i - 1] = (char *) malloc (3  * sizeof(char)); 
+		strcpy(nomcontr[i-1], "une personne est affecte a la machine ");
+		sprintf(numero[i-1], "%d", i);
+		strcat(nomcontr[i-1], numero[i-1]); 
+		glp_set_row_name(prob, i, nomcontr[i-1]);
+		glp_set_row_bnds(prob, i, GLP_FX, p.droite[i-1], 0.0);
+	}	
+
+  // Declaration du nombre de variables : nbvar 
+	
+  glp_add_cols(prob, nbvar); 
+  nomvar = (char **) malloc (nbvar * sizeof(char *));
+
+  // On precise le type des variables 
+	for(i=1;i<=nbvar;i++)
+	{
+		
+		nomvar[i - 1] = (char *) malloc (3 * sizeof(char));
+		sprintf(nomvar[i-1],"x%d",i);
+		glp_set_col_name(prob, i , nomvar[i-1]); 
+		glp_set_col_bnds(prob, i, GLP_DB, 0.0, 1.0); 
+		glp_set_col_kind(prob, i, GLP_BV);	
+	} 
+  /* Definition des coefficients des variables dans la fonction objectif */
+	for(i = 1;i <= nbvar;i++){
+		glp_set_obj_coef(prob,i,p.productivite[i-1]);
+		
+}
+  /* Definition des coefficients non-nuls dans la matrice des contraintes*/
+	nbcreux = 0;
+	for(i = 0;i < p.nbcontr;i++)
+	{
+		nbcreux += p.sizeContr[i];
+	}
+	
+	ligne = (int *) malloc ((1 + nbcreux) * sizeof(int));
+	colonne = (int *) malloc ((1 + nbcreux) * sizeof(int));
+	valeur = (double *) malloc ((1 + nbcreux) * sizeof(double));
+	
+	
+	pos = 1;
+	for(i = 0;i < p.nbcontr;i++)
+	{
+		for(j = 0;j < p.sizeContr[i];j++)
+		{
+			ligne[pos] = i + 1;
+			colonne[pos] = p.contr[i][j];
+			valeur[pos] = 1;
+			pos++;
+			
+		}
+	}
+	
+
+  /* chargement de la matrice dans le probleme */
+  glp_load_matrix(prob, nbcreux, ligne, colonne, valeur);
+
+
+  // resolution du probleme 
+  glp_simplex(prob, NULL); glp_intopt(prob,NULL); /* Resolution */
+
+  // resolution 
+  z = glp_mip_obj_val(prob);
+
+  // on recupere la valeur des variables
+  x = (double *) malloc (nbvar * sizeof(double));
+  for(i = 0;i < nbvar; i++)
+  {
+	x[i] = glp_mip_col_val(prob,i+1);
+  }
+
+  printf("z = %lf\n",z);
+  for(i = 0;i < nbvar;i++) printf("x%d = %d, ",i+1,(int)(x[i] + 0.5));  
+  puts("");
+
+  
+  glp_delete_prob(prob);
+  glp_free_env();
+
+  
+  return 0;
+}
