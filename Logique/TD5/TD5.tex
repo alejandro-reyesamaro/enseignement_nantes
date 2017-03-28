@@ -1,0 +1,61 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\textheight}{0.6in}
+
+\usepackage{turnstile}
+\newcommand{\dednat}[2]{#1\hspace{10pt}$\sdtstile{N}{}$\hspace{10pt}#2}
+\newcommand{\Dednat}[1]{$\sdtstile{N}{}$\hspace{10pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\begin{document}
+\begin{center}
+\Large{\bf TD 5.} \Large{\sc Calcul Naturel}
+\end{center}
+
+{\bf{{\large Exercice 1:}} } Prouvez que :
+\begin{enumerate}
+\item \dednat{$a\land b$}{$a\lor b$}
+\item \dednat{$a \lor a$}{$a$}
+\item \dednat{$x$}{$x\lor(x \land y)$}
+\item \dednat{$x\lor(x \land y)$}{$x$}
+\item \dednat{$a\land (b \land c)$}{$(a\land b) \land c$}
+\item \dednat{$a\lor (b \lor c)$}{$(a\lor b) \lor c$}
+\item \dednat{$a\lor (b \land c)$}{$(a\lor b) \land (a\lor c)$}
+\item \dednat{$(a\lor b) \land (a\lor c)$}{$a\lor (b \land c)$}
+\item \Dednat{$\left(a\imp (b\imp c)\right) \imp \left((a\imp b)\imp(a\imp c)\right)$}
+\item \Dednat{$\left((a\imp c)\land(b\imp c)\right) \imp \left((a\lor b)\imp c\right)$}
+\item \dednat{$b$}{$a\imp b$}
+\end{enumerate}
+
+{\bf{{\large Exercice 2:}} } Prouvez que :
+\begin{enumerate}
+\item \dednat{$A\Rightarrow(B\imp C)$}{$A\land B\Rightarrow C$}
+\item \dednat{$A\land (B\lor C)$}{$(A\land B)\lor(A\land C)$}
+\item \dednat{$A\imp B$}{$\neg A \lor B$}
+\item \dednat{$A \imp B$}{$\neg B \imp \neg A$}
+\item \dednat{$\neg A$, $A\lor B$}{$B$}
+\item \dednat{$\neg A \land \neg B$}{$\neg (A \lor B)$}
+\item \Dednat{$\left(A\imp (B\imp C)\right) \imp \left((A\imp B)\imp(A\imp C)\right)$}
+\end{enumerate}
+
+{\bf{{\large Exercice 2:}} } Prouvez que :
+\begin{enumerate}
+\item \dednat{$a$}{$\neg \neg a$}
+\item \Dednat{$a\lor \neg a$}
+\end{enumerate}
+
+\end{document}

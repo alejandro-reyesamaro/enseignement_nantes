@@ -1,0 +1,31 @@
+#include <stdio.h> 
+#include <pthread.h> 
+
+int i;  
+
+void addition() 
+{
+    i += 10; 
+    printf("Bonjour thread, i est égal à %d\n", i); 
+    i += 20; 
+    printf("Bonjour thread, i est égal à %d\n", i); 
+}
+
+int main() 
+{ 
+    pthread_t thread_id;   
+    i = 0; 
+    /* Crée un thread */ 
+    if (pthread_create(&thread_id, NULL,(void *(*)())addition, NULL) == ­-1) 
+    { 
+      perror("Impossible de créer le thread"); 
+    } 
+    /* Addition dans le processus principal */ 
+    i += 1000; 
+    printf("Bonjour file d'exécution principale , i est égal à %d\n", i); 
+    i += 2000; 
+    printf("Bonjour file d'exécution principale, i est égal à %d\n", i); 
+    /* Attend que le thread se termine */ 
+    pthread_join(thread_id, NULL); 
+    return 0; 
+}
