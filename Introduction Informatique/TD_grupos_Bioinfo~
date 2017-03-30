@@ -47,32 +47,6 @@ function compl_adn(adn1)
 
 Ecrire(compl_adn("ATCGG"));
 
-//Ex 3
-function sous_chaine(frag_adn, adn)
-{
-  if(Taille(frag_adn) > Taille(adn))
-    return false;
-  var est_souschaine = true;
-  var j;
-  for (var i = 0; i <= Taille(adn)-Taille(frag_adn); i++)
-  {
-    est_souschaine = true;
-    j = 0;
-    while(j < Taille(frag_adn) && est_souschaine)
-    {
-      if(CaractereEn(adn,i+j) != CaractereEn(frag_adn,j))
-        est_souschaine = false;
-      j = j + 1;
-    }
-    if(est_souschaine)
-      return true;
-  }
-  return false;
-}
-
-if(sous_chaine("jan", "alejandro"))
-  Ecrire ("FOUND !");
-
 //Ex 5
 function loups(N) {
   var gen = 0;
