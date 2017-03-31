@@ -59,12 +59,12 @@ exx :- sat('~' p).
 %% Exemple : calcul du nombre d'occurrences de 0 dans un fichier
 %%
 noc0(File,N) :-
-  %abolish(compt/1),          % abolit le predicat   compt/1
-  %assert(compt(0)),          % met le fait dans la BD
+  abolish(compt/1),          % abolit le predicat   compt/1
+  assert(compt(0)),          % met le fait dans la BD
   see(File),                 % ouvre le fichier File pour la lecture
   boucle0,
   seen,                      % fermeture du fichier
-  %retract((compt(N))),       % supprime le fait dans la BD ; PCH !!!
+  retract((compt(N))),       % supprime le fait dans la BD ; PCH !!!
   !.
 
 %% tell/1 : ouverture pour l'ecriture
@@ -85,9 +85,9 @@ boucle0 :-
      !.
 
 lect(N) :-
-  %retract((compt(N))),
+  retract((compt(N))),
   N1 is N+1,
-  %assert((compt(N1))),
+  assert((compt(N1))),
   !.
 
 tst1(N) :-
@@ -98,7 +98,7 @@ tst1(N) :-
 %%
 %% Exemple : calcul du nombre d'entiers pairs dans une liste
 %%
-noc1(Liste,Pairs) :-
+noc1(Liste,Ps) :-
   abolish(lfait/1),
   assert(lfait([ ])),
   pourtout(memb(E,Liste),
@@ -111,7 +111,7 @@ noc1(Liste,Pairs) :-
           )
          ),
   retract((lfait(Ps))),
-  inv(Ps, Pairs),
+  %inv(Ps, Pairs),
   !.
 
 tst2(N) :-
