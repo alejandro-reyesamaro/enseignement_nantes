@@ -1,0 +1,29 @@
+A10
+Writing problem data to 'blade.lp'...
+208 lines were written
+GLPK Simplex Optimizer, v4.52
+9 rows, 79 columns, 183 non-zeros
+      0: obj =   0.000000000e+00  infeas =  9.000e+00 (9)
+*    13: obj =   4.187500000e+03  infeas =  0.000e+00 (0)
+*    25: obj =   3.507500000e+03  infeas =  2.776e-17 (0)
+OPTIMAL LP SOLUTION FOUND
+GLPK Integer Optimizer, v4.52
+9 rows, 79 columns, 183 non-zeros
+79 integer variables, all of which are binary
+Integer optimization begins...
++    25: mip =     not found yet >=              -inf        (1; 0)
++    29: >>>>>   3.673000000e+03 >=   3.528000000e+03   3.9% (2; 0)
++    42: >>>>>   3.656000000e+03 >=   3.612000000e+03   1.2% (2; 3)
++    42: mip =   3.656000000e+03 >=     tree is empty   0.0% (0; 9)
+INTEGER OPTIMAL SOLUTION FOUND
+Nombre de variables = 79
+Plus grande tournee = 3
+Distance totale = 3656.000000
+tournée 1 : [9] avec une longueur de 366
+tournée 2 : [6,4,8] avec une longueur de 761
+tournée 3 : [2,7,5] avec une longueur de 1307
+tournée 4 : [1,3] avec une longueur de 1222
+Temps : 0.003000
+
+
+
