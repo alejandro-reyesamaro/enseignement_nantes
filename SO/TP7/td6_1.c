@@ -27,3 +27,6 @@ int main(void)
 	pthread_join(my_thread, NULL); /* on attend la fin du thread */ 
 	return 0; 
 }
+
+// to compile :
+//gcc -g -Wall -pthread code.c -lpthread -o yourprogram
