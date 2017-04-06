@@ -1,11 +1,10 @@
 // Your code here
-// Your code here
 function MouseClick(x,y) {
-Texte(x,y,'Aie !!!','red');
+	Texte(x,y,'Aie !!!','red');
 }
 
 function MouseMove(x,y) {
-CerclePlein(x,y,5,'black');
+	CerclePlein(x,y,5,'black');
 }
 
 /*

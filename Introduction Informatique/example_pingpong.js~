@@ -7,7 +7,7 @@ function MouseMove(x,y) {
 CerclePlein(x,y,5,'black');
 }
 
-
+/*
 function draw(c) {
   Initialiser();
   
@@ -36,14 +36,19 @@ function draw(c) {
     vitY = 0;
   }
 }
+*/
+
 
 function Keypressed(c) {
-  noLoop();
+  //noLoop();
+  RectanglePlein(90,90,100,20,'white');
+  Texte(100,100,Ascii_vers_Caractere(c),'red');
 }
+
 
 var posx,poxy, vitX, vitY;
 posx=100;
 posy=200;
 vitX = 1;
 vitY = 1;
-Loop(-1);
+//Loop(-1);

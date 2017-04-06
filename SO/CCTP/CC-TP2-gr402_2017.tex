@@ -1,0 +1,93 @@
+%================================================================
+% TP2-X4I0010.tex
+% L2_X4I0010: Système d'exploitation
+%====================================================================
+\documentclass[CC,sansRappel,12pt]{tdtp-utf8}
+\usepackage{graphicx}
+\newcommand{\regle}[2]{$ #1 \rightarrow #2 $}
+\newcommand{\tab}{\hspace{0.5cm}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\RA}{\Rightarrow}
+
+\cursus{L2 Informatique}
+\intitule{X4I0010 -- Système d'exploitation}
+\date{}
+\title{Contrôle de travaux pratiques -- Contrôle final}
+
+\begin{document}
+
+%====================================================================
+\begin{feuille}
+
+\hspace*{1mm} \hfill Épreuve de contrôle continu du 28 avril 2016 (groupe 402)\\
+\hspace*{1mm} \hfill Tous documents autorisés\\[5mm]
+
+\fbox{\parbox{0.9\textwidth}{
+%Vous rédigerez un compte-rendu sur lequel vous
+%indiquerez la réponse à chaque question, vos
+%explications et commentaires (interprétation
+%du résultat), et le cas échéant, la ou les commandes
+%utilisées.
+%
+Déposez votre devoir sous la forme d'une seule archive
+compressée sur Madoc dans l'espace
+prévu à cet effet (Dépôt des compte-rendus de TP CC 
+$\rightarrow$ Groupe 402 : Contrôle continu de TP --
+Contrôle final). Veillez bien à ce que votre archive 
+comporte les noms du binôme de TP (ex :
+dupont-durant\_TPCC\_Controle\_final.zip).
+Le contenu de l'archive sera constituée des fichiers sources
+commentés des 3 programmes.
+}}
+
+\begin{exercice}[Les processus]
+
+Écrire un programme C (ou C++) qui crée deux processus fils affichant
+toutes les secondes leur PID ainsi que la valeur d'un compteur incrémenté
+de un chaque seconde.
+De son coté, le processus père attendra dix secondes avant d'envoyer
+un signal qui devra ``tuer'' le 1er fils. Il attendra encore dix secondes
+pour faire la même chose à son second fils.
+\end{exercice}
+
+\begin{exercice}[Les threads et les sémaphores]
+
+Nous voulons écrire un programme qui crée deux threads
+en plus du thread principal (3 threads en tout).
+Les threads créés devront accéder à une ressource commune
+constituée d'une variable entière \textbf{x} globale à l'application.
+Un des deux threads auxiliaires devra sans cesse incrémenter la
+variable \textbf{x} de un. L'autre thread devra sans cesse la décrémenter
+de un.
+De plus, chaque thread conservera le nombre de fois qu'il a modifié
+\textbf{x}. Ainsi, normalement le contenu de \textbf{x}
+devrait être identique à la différence du nombre
+d'incrémentations de
+\textbf{x} et du nombre de décrémentations de \textbf{x}.
+Le thread principal devra afficher la valeur de la variable \textbf{x}
+toutes les secondes. Il affichera aussi la différence entre le nombre
+d'opérations effectuées par le premier thread et celui du second thread
+(pour cette raison, ces deux compteurs seront aussi implémentés comme
+des variables globales partagées par les 3 threads).
+
+\begin{enumerate}
+\item Écrire un premier programme sans prendre de précaution particulière
+pour l'accès aux ressources partagées par les 3 threads. Normalement,
+l'exécution de ce programme devrait montrer rapidement une divergence entre
+le contenu variable \textbf{x} et la différence des comptages des opérations
+d'incrémentation et de décrémentation.
+\item Écrire un second programme utilisant un sémaphore pour créer un
+``mutex'' permettant de
+protéger l'accès concurrent aux ressources partagées. L'exécution de
+ce programme ne devrait pas montrer de divergence entre le contnu
+de \textbf{x} et
+la différence des comptages des opérations effectuées par les deux threads
+auxiliaires.
+\end{enumerate}
+
+\end{exercice}
+
+\end{feuille}
+
+\end{document}
+
