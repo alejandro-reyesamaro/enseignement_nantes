@@ -1,0 +1,2 @@
+Pour compiler notre projet, il suffit dans un terminal de se placer dans le dossier src de notre dossier et de lancer la commande : make.
+Pour exécuter notre projet, taper la commande : ./bladeFlyer fichierDeDonnees. fichierDeDonnees correspond au chemin vers le fichier de données ex : ./bladeFlyer exemple.dat
