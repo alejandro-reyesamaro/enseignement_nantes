@@ -1,0 +1,45 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\textheight}{0.6in}
+
+\usepackage{turnstile}
+\newcommand{\ded}[2]{#1\hspace{3pt}$\sdtstile{}{}$\hspace{3pt}#2}
+\newcommand{\Ded}[1]{$\sdtstile{}{}$\hspace{3pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\begin{document}
+\begin{center}
+\Large{\bf TD 10.} \Large{\sc Logique de premier ordre}\\ Méthodes de \textit{Tableau} et \textit{Résolution}
+\end{center}
+
+{\bf{{\large Exercice 1:}} } Prouvez que \Ded{$\Gamma$}, où :
+$$\Gamma = \forall x\, \forall y\, \left[p\left(h(x,x)\right)\lor p(y)\right]\imp \exists u\, \exists v\, \exists z\, \left[p\left(h\left(k(c),u\right)\right)\land p\left(h\left(v,k(z)\right)\right)\right]$$
+
+{\bf{{\large Exercice 2:}} } Prouvez que \ded{$\Gamma$}{$\Delta$}, où :
+\begin{align*}
+\Gamma &= \left\{\exists x\, \left(p(x) \land \forall y\, \left(d(y) \imp l(x,y)\right)\right),\forall x\, \left(p(x) \imp \forall y\,\left(g(y)\imp \lnot l(x,y)\right)\right)\right\}\\
+\Delta &= \forall x\, \left(d(x)\imp \lnot g(x)\right)
+\end{align*}
+%\vspace{20pt}
+
+{\bf{{\large Exercice 3:}} } Prouvez que \ded{$\Gamma$}{$\Delta$}, où :
+\begin{align*}
+\Gamma &= \left\{p(x)\land q\left(h(c)\right)\lor \left(r(y)\imp s(a)\right)\right\}\\
+\Delta &= \left(p(b) \lor \left(r\left(g(z)\right)\imp s(u)\right)\right) \land \left(q(s)\lor \left(r(w)\imp s(a)\right)\right)
+\end{align*}
+\end{document}

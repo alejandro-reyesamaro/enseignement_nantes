@@ -13,7 +13,7 @@ membp([_,E|L],[E|T]) :-
 % membi(+Liste,-Impaires)
 
 membi([],[]).
-membi([_],[]).
+membi([X],[X]).
 membi([E,_|L],[E|T]) :-
   membi(L,T).
 

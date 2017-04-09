@@ -1,0 +1,60 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\textheight}{0.6in}
+
+\usepackage{turnstile}
+\newcommand{\dednat}[2]{#1\hspace{10pt}$\sdtstile{N}{}$\hspace{10pt}#2}
+\newcommand{\Dednat}[1]{$\sdtstile{N}{}$\hspace{10pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\begin{document}
+\begin{center}
+\Large{\bf TD 8.} %\Large{\sc Forme PRENEXE et Skolémisation}
+\end{center}
+
+{\bf{{\large Exercice 1:}} } Exprimer en $L^1$ :
+\begin{enumerate}
+\item X et Y ont le même age;
+\item X est plus âgé que Y;
+\item \textit{marie} est la plus jeune fille de son groupe;
+\item \textit{jacques} ne pourrait avoir que des amies blondes;
+\item Toutes les amies de \textit{jacques} sont blondes;
+\item Personne de Beatles n'a fait ses études à Nantes;
+\item[] \underline{Remarque} : utilisez le prédicat \textit{faire\_etudes}(Qui, Où, De, À).
+\item \textit{``Momento mori''} : Si X est un homme, alors X est mortel;
+\item \textit{Syllogisme d'Arystote} : 
+\begin{enumerate}
+\item \textit{A$_1$ ``Baroco''} : Si chaque P est M, mais s'il existe S qui n'est pas M, alors il existe S qui n'est pas P;
+\item \textit{A$_2$ ``Féstimo''} : Si chaque P n'est pas M, mais il existe quelqu'un qui est S et M, alors il existe quelqu'un qui est S et qui n'est pas P.
+\end{enumerate}
+\item Soit $\phi$ une signature avec l'égalité '=', exprimez :
+\begin{enumerate}
+\item \textit{f} est une fonction;
+\item \textit{f} : P $\rightarrow$ Q.
+\end{enumerate}
+\end{enumerate}
+
+{\bf{{\large Exercice 2:}} } Exprimez en $L^1$ et analysez :
+\begin{enumerate}
+\item Chaque mathématicien peut résoudre ce problème à condition que quelqu'un puisse le résoudre. Jean est un mathématicien et il ne peut pas résoudre ce problème. Alors ce problème n'est pas décidable.
+\item Tous les politiciens (politiques) sont comédiens. Il existe des comédiens qui sont hypocrites. Alors, il existe des politiciens qui sont hypocrites. 
+\end{enumerate}
+
+{\bf{{\large Exercice 3:}} } Vérifier que la proposition :
+$$\exists x\, \left(p(x) \lor q(x)\right) \Leftrightarrow \exists x\, p(x) \lor \exists y\, q(y)$$
+est \textbf{vrai} dans chaque domaine D à deux éléments.
+\end{document}

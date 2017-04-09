@@ -135,8 +135,10 @@ e9(P) :-
 
 %% 10. PROGRAMMEZ : Enumeration des suffixes d'une liste.
 %% suff(-Pref,+Liste)
+suff(L,L).
+suff(S,[_|L]):-suff(S,L).
 
-suff(S,L) :- 
+suffapp(S,L) :- 
 	app(_,S,L).
 
 e10(S) :-

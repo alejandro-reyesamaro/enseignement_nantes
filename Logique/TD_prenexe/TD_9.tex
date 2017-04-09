@@ -1,0 +1,62 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\textheight}{0.6in}
+
+\usepackage{turnstile}
+\newcommand{\dednat}[2]{#1\hspace{10pt}$\sdtstile{N}{}$\hspace{10pt}#2}
+\newcommand{\Dednat}[1]{$\sdtstile{N}{}$\hspace{10pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\newcommand{\corrUn}{
+\begin{tabular}{ll}
+\underline{Correction :} & \\
+$\forall x\, \left(\lnot\left(\exists y\, r(x,y) \land \forall y\, \lnot s(x,y)\right) \lor \lnot\left( \exists y\, r(x,y) \land P\right)\right)$ & éliminer $\imp$ et $\Leftrightarrow$ \\
+$\forall x\, \left(\forall y\, \lnot r(x,y) \lor \exists y\, s(x,y) \lor \forall y\, \lnot r(x,y) \lor \lnot P\right)$ & éliminer $\lnot$\\
+$\forall x\, \left(\forall y_1\, \lnot r(x,y_1) \lor \exists y_2\, s(x,y_2) \lor \forall y_3\, \lnot r(x,y_3) \lor \lnot P\right)$ & renommer les variables\\ 
+$\forall x\, \forall y_1\, \exists y_2\, \forall y_3\, \left[\lnot r(x,y_1) \lor s(x,y_2) \lor \lnot r(x,y_3) \lor \lnot P\right]$ & \underline{\sc Prenexe}\\
+$\forall x\, \forall y_1\, \forall y_3\, \left[\lnot r(x,y_1) \lor s\left(x,f(x,y_1)\right) \lor \lnot r(x,y_3) \lor \lnot P\right]$ & \underline{\sc Skolem}\\
+$\left\{ \lnot r(X,Y) \lor s\left(X,f(X,Y)\right) \lor \lnot r(X,Z) \lor \lnot P\right\}$ & \underline{F.C.}
+\end{tabular}	
+}
+
+\newcommand{\corrDeux}{
+\begin{tabular}{ll}
+\underline{Correction :} & \\
+$\left(\lnot \forall x\, p(x) \lor \forall x\, q(x)\right) \land \left(\lnot r(b) \lor \exists x\, s(x)\right)$ & éliminer $\imp$ et $\Leftrightarrow$\\
+$\left(\exists x\, \lnot p(x) \lor \forall x\, q(x)\right) \land \left(\lnot r(b) \lor \exists x\, s(x)\right)$ & éliminer $\lnot$\\
+$\left(\exists x_1\, \lnot p(x_1) \lor \forall x_2\, q(x_2)\right) \land \left(\lnot r(b) \lor \exists x_3\, s(x_3)\right)$ & renommer les variables\\
+$\exists x_1\, \forall x_2\, \exists x_3\, \left[ \left(\lnot p(x_1) \lor q(x_2)\right) \land \left(\lnot r(b) \lor s(x_3)\right)\right]$ & \underline{\sc Prenexe}\\
+$\forall x_2\, \left[ \left(\lnot p(a) \lor q(x_2)\right) \land \left(\lnot r(b) \lor s\left(f(x_2)\right)\right)\right]$ & \underline{\sc Skolem}\\
+$\left\{\lnot p(a) \lor q(X);\lnot r(b) \lor s\left(f(X)\right)\right\}$ & \underline{F.C}
+\end{tabular}	
+}
+
+\begin{document}
+\begin{center}
+\Large{\bf TD 9.} \Large{\sc Forme PRENEXE et Skolémisation}
+\end{center}
+
+{\bf{{\large Exercice 1:}} } Trouvez la \textit{Forme Prenexe}, la \textit{Forme de Skolem} et la \textit{Forme Clausale} de :
+\begin{enumerate}
+\item $\forall x\, \left(\lnot\left(\exists y\, r(x,y) \land \forall y\, \lnot s(x,y)\right) \imp \lnot \left(\exists y\, r(x,y) \land P\right)\right)$
+\item[] \corrUn{}
+\item $\left(\lnot \forall x\, p(x) \lor \forall x\, q(x)\right) \land \left(r(x) \imp \exists x\, s(x)\right)$
+\item[] \corrDeux{}
+\item $\lnot\left(\left(\lnot \exists x p(x) \lor \forall x q(x)\right)\right) \land \left(\exists x s(x) \imp s(c)\right)$
+\end{enumerate}
+
+\end{document}
