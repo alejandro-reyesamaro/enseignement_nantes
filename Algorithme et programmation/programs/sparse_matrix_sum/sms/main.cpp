@@ -25,10 +25,21 @@ bool valid_sum(SparseMatrix M1, SparseMatrix M2)
 // (given function)
 int value_at(SparseRow row, int col)
 {
+    /*
     for(int i = 0; i < row.m; i++)
         if (row.indices[i] == col)
             return row.values[i];
     return 0;
+    */
+    int i = 0;
+    int result = 0;
+    while(i <= col &&  i < row.m)
+    {
+        if (row.indices[i] == col)
+            result = row.values[i];
+        i++;
+    }
+    return result;
 }
 
 // c) Implementing a function to sum tow sparse matrix (result: int **)

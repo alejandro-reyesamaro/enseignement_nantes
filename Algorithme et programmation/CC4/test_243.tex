@@ -25,8 +25,8 @@
 % Here's where you edit the Class, Exam, Date, etc.
 \newcommand{\class}{Algorithmique et programmation}
 \newcommand{\term}{X2I0010, groupe 243}
-\newcommand{\examnum}{CC 2}
-\newcommand{\examdate}{06/03/2017}
+\newcommand{\examnum}{CC 4}
+\newcommand{\examdate}{24/04/2017}
 \newcommand{\timelimit}{30 Minutes}
 
 \usepackage{fancyvrb}
@@ -74,7 +74,13 @@
 
 \noindent\fbox{%
 \parbox{0.98\textwidth}{%
-\textbf{Pr\'eambule} : Aucun document autoris\'e. Calculatrices et t\'el\'ephones portables interdits. %Les exercices ne sont pas class\'es par difficult\'e croissante. Nombre de pages : \numpages.
+%\textbf{Pr\'eambule} : Aucun document autoris\'e. Calculatrices et t\'el\'ephones portables interdits. Les exercices ne sont pas class\'es par difficult\'e croissante. Nombre de pages : \numpages.
+\begin{tabular}{ll}
+\textbf{Pr\'eambule} : & Aucun document autoris\'e. \\
+& Calculatrices et t\'el\'ephones portables interdits. \\
+& Les exercices ne sont pas class\'es par difficult\'e croissante. \\
+& Nombre de pages : \numpages.
+\end{tabular}
 }%
 }
 \vspace{12pt}
@@ -127,32 +133,91 @@
 
 % Basic question
 %\addpoints
-\question Dans la discipline de l'analyse num\'erique, une matrice creuse est une matrice contenant beaucoup de z\'eros. Quand on veut manipuler ou stocker des matrices creuses en informatique, il est avantageux d'utiliser des algorithmes et des structures de données qui prennent en compte la structure peu dense de la matrice \footnote{Wikip\'edia (https://fr.wikipedia.org/wiki/Matrice\_creuse)}. 
+\question Dans la discipline de l'analyse num\'erique, une matrice creuse est une matrice contenant beaucoup de z\'eros. Quand on veut manipuler ou stocker des matrices creuses en informatique, il est avantageux d'utiliser des algorithmes et des structures de donn\'ees qui prennent en compte la structure peu dense de la matrice \footnote{Wikip\'edia (https://fr.wikipedia.org/wiki/Matrice\_creuse)}. 
 
-L'objectif de l'exercice s'est d'\'ecrire des fonctions pour pouvoir manipuler des matrices creuses, \`a l'aide des types enregistrements donnés dans les figures .... Sp\'ecifier trois fonctions dont les r\^oles sont, respectivement de
-\begin{enumerate}[label=\alph*)]
-\item V\'erifier si une matrice creuse a \'et\'e correctement d\'eclar\'ee (si le nombre d'\'el\'ements dans chaque ligne est compatible avec le nombre de colonnes de la matrice).
-\item V\'erifier si deux matrices creuse peuvent \^etre additionnées
-\item Etant donnée la fonction element at ci-dessous, Retourner la somme de deux matrices creuses dans un tableau à deux dimensions.
-\end{enumerate}
-
-\underline{Exemple :} 
+L'objectif de l'exercice c'est d'\'ecrire des fonctions pour pouvoir manipuler des matrices creuses, \`a l'aide des types \textit{enregistrements} \texttt{T\_ligne\_creuse} et \texttt{T\_matrice\_creuse} donn\'es ci-dessous. 
+ 
 
 \begin{Verbatim}
-Saisir un point (coordonn\'ees s\'epar\'ees par [ENTER])
-0
-0
-Saisir un point (coordonn\'ees s\'epar\'ees par [ENTER])
-1
-1
-Saisir un point (coordonn\'ees s\'epar\'ees par [ENTER])
-1
-0
-Saisir un point (coordonn\'ees s\'epar\'ees par [ENTER])
-0
-0
-Distance = 3.41421
+\textbf{type} \textcolor{blue}{\bf T\_ligne\_creuse} = \textbf{enregistrement}
+	\textbf{pointeur vers tableau d'entiers} indices
+	\textbf{pointeur vers tableau d'entiers} valeurs
+	\textbf{entier} nb  \textcolor{dgreen}{/* nombre d'\'el\'ements diff\'erents de z\'ero */}
+\textbf{fin enregistrement} 
 \end{Verbatim}
 
+\begin{Verbatim}
+\textbf{type} \textcolor{blue}{\bf T\_matrice\_creuse} = \textbf{enregistrement}
+	\textbf{pointeur vers tableau de} \textcolor{blue}{\bf T\_ligne\_creuse} lignes
+	\textbf{entier} n \textcolor{dgreen}{/* nombre de lignes */}
+	\textbf{entier} m \textcolor{dgreen}{/* nombre de colonnes */}
+\textbf{fin enregistrement} 
+\end{Verbatim}
+
+\textbf{Question 1 :} Sp\'ecifiez trois fonctions dont les r\^oles sont, respectivement de :
+\begin{enumerate}[label=\alph*)]
+\item V\'erifier si une matrice creuse a \'et\'e correctement d\'eclar\'ee (si le nombre d'\'el\'ements dans chaque ligne est compatible avec le nombre de colonnes de la matrice);
+\item V\'erifier si deux matrices creuses peuvent \^etre additionn\'ees;
+\item \'Etant donnée la fonction \texttt{element\_dans} ci-dessous, retourner la somme de deux matrices creuses dans un tableau d'entiers \`a deux dimensions.
+\end{enumerate}
+
+\newpage
+
+\begin{Verbatim}
+\textbf{fonction} element_dans(\textcolor{blue}{\bf T\_ligne\_creuse} ligne, \textbf{entier} colonne) : \textbf{entier}
+\textbf{variables :}
+	\textbf{entier} i, resultat
+\textbf{debut}
+    resultat <- 0
+    i <- 1
+    \textbf{tant que}( i <= colonne \textbf{et} i <= ligne.nb) \textbf{faire}
+        \textbf{si} (\textbf{memoire}(ligne.indices[i]) = colonne) \textbf{alors}
+            resultat <- \textbf{memoire}(ligne.valeurs[i]);
+        \textbf{fin si}
+    \textbf{fin tant que}
+    \textbf{returner} resultat;
+\textbf{fin}
+\end{Verbatim}
+
+\underline{Exemple :} La matrice creuse
+\[
+A_{4\times 5} = 
+\left[ {\begin{array}{ccccc}
+2 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0\\
+3 & 0 & 0 & 1 & 2\\
+0 & 0 & 0 & 0 & 1
+\end{array} } \right]
+\]
+
+\`a la repr\'esentation suivante :
+
+\begin{tabular}{llcll}
+$A \rightarrow$ & ligne 1 (2 \'el\'ements) & $\rightarrow$ & indices : $\{1,4\}$ & valeurs : $\{2,1\}$ \\
+& ligne 2 (1 \'el\'ement) & $\rightarrow$ & indices : $\{3\}$ & valeurs : $\{1\}$ \\
+& ligne 3 (3 \'el\'ements) & $\rightarrow$ & indices : $\{1,4,5\}$ & valeurs : $\{3,1,2\}$ \\
+& ligne 4 (1 \'el\'ement) & $\rightarrow$ & indices : $\{5\}$ & valeurs : $\{1\}$
+\end{tabular}
+
+Alors,
+
+\[
+A_{4\times 5} + B_{4\times 5} =  
+\left[ {\begin{array}{ccccc}
+2 & 0 & 0 & 1 & 1\\
+0 & 0 & 1 & 0 & 0\\
+4 & 1 & 0 & 1 & 2\\
+0 & 1 & 0 & 0 & 1
+\end{array} } \right]
+\]
+
+o\`u :
+
+\begin{tabular}{llcll}
+$B \rightarrow$ & ligne 1 (1 \'el\'ement) & $\rightarrow$ & indices : $\{5\}$ & valeurs : $\{1\}$ \\
+& ligne 2 (0 \'el\'ement) & $\rightarrow$ & indices : $\phi$ & valeurs : $\phi$ \\
+& ligne 3 (2 \'el\'ements) & $\rightarrow$ & indices : $\{1,2\}$ & valeurs : $\{1,1\}$ \\
+& ligne 4 (1 \'el\'ement) & $\rightarrow$ & indices : $\{2\}$ & valeurs : $\{1\}$
+\end{tabular}
 \end{questions}
 \end{document}
