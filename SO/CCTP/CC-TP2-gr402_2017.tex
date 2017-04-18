@@ -41,7 +41,7 @@ Le contenu de l'archive sera constituée des fichiers sources commentés des 2 p
 
 \vspace{20pt}
 
-Dans un parc naturel nous avons introduit une population de cerfs (deers) avec l'objectif d'encourager la chasse chez les habitants de la région. Dans le même temps nous souhaitons que la population de cerfs ne décroise pas rapidement. Pour cette raison nous disposons d'un inspecteur chargé de vérifier l'état de la population une fois par mois.
+Dans un parc naturel nous avons introduit une population de 150 cerfs (deers) avec l'objectif d'encourager la chasse chez les habitants de la région. Dans le même temps nous souhaitons que la population de cerfs ne décroise pas rapidement. Pour cette raison nous disposons d'un inspecteur chargé de vérifier l'état de la population une fois par mois.
 
 À partir de la fréquence de reproduction des cerfs et de divers facteurs (météorologique, alimentation, prédateur, etc.) il est établi des règles indiquant les mois de l'année où la chasse des cerfs est autorisée dans le parc.
 
@@ -49,11 +49,11 @@ L'objectif de cet exercice est de simuler l'évolution de la population de cerfs
 
 \begin{exercice}[Les processus]
 
-\tocorrect{Dans un premier temps, nous souhaitons poublier les régles de chasse du parc et les periodes de réproduction des cerfs, pour chauqe mois. Pour cela, nous devons utiliser deus processus differents:}
+\tocorrect{Dans un premier temps, nous souhaitons poublier les régles de chasse du parc et les periodes de réproduction des cerfs, pour chauqe mois. Pour cela, nous devons utiliser deux processus differents:}
 
 \begin{itemize}
-\item \tocorrect{Un processus \textbf{A} qui n'a pas le droit d'afficher le mot ``\textit{hunting}'', et}
-\item \tocorrect{Un processus \textbf{B} qui n'a pas le droit d'afficher le mot ``\textit{reproduction}''.}
+\item Un processus \textbf{A} qui n'a pas le droit d'afficher le mot ``\textit{hunting}'', et
+\item Un processus \textbf{B} qui n'a pas le droit d'afficher le mot ``\textit{reproduction}''.
 \end{itemize}
 
 \textbf{Question 1: } \tocorrect{En utilisant des processus et des signaux, completez le programme \texttt{proc\_2017.cpp} (à télécharger depuis {\sc Madoc}) pour pouvoir publier les règles du parc (présents dans le fichier \texttt{np\_rules.txt}) comme le montre l'exemple suivent :}
@@ -95,14 +95,14 @@ Texte à afficher :
 \begin{enumerate}
 \item Les cerfs \tocorrect{se reproduisent une seule fois pendant les premiers 10 jours de chaque mois indiqué dans les règles generales du parc (fichier \texttt{np\_rules.txt}), en respectant la loi suivante :} $$pop_{i+1} = 1.15\cdot pop_{i}$$
 \item[] où $pop_k$ est la population des cerfs du mois $k$.
-\item Les cerfs \tocorrect{peuvent se réproduire le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$}
+\item Les cerfs \tocorrect{peuvent se réproduire le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$}.
 \end{enumerate}
 \item \underline{Chasseurs:}
 \begin{enumerate}
-\item Les chasseurs \tocorrect{ont le droit à chasser seulement un jour dans la deuxième quinzaine de chauqe mois indiqué dans les règles generales du parc (fichier \texttt{np\_rules.txt}).}
-\item Les chasseurs \tocorrect{ont le droit à chasser un maximum de 25 animaux par mois.}
+\item Les chasseurs \tocorrect{ont le droit de chasser seulement un jour dans la deuxième quinzaine de chauqe mois indiqué dans les règles generales du parc (fichier \texttt{np\_rules.txt}).}
+\item Les chasseurs \tocorrect{ont le droit de chasser un maximum de 25 animaux par mois.}
 \item[] \textbf{(bonus) : } \tocorrect{Implementez un fonction de probabilité (uniforme, par exemple) pour faire varier ce nombre à chaque fois.}
-\item Les chasseurs \tocorrect{peuvent chasser le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$.}
+\item Les chasseurs \tocorrect{ont de droit de chasser le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$.}
 \end{enumerate}
 \item \underline{Inspecteur:}
 \begin{enumerate}

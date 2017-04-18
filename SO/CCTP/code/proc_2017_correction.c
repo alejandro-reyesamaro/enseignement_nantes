@@ -29,7 +29,7 @@ t_park_seasons read_seasons()
 	seasons.reproduction_seasons 	= malloc(sizeof(int) * 12);
 	seasons.hunting_seasons 		= malloc(sizeof(int) * 12);
 
-	FILE * file = fopen("fseasons", "r");
+	FILE * file = fopen("np_rules.txt", "r");
 	int i;
 	char c;
 	for(i = 0; i < 12; i++)
@@ -137,4 +137,4 @@ int main(int argc, char *argv[])
 }
 
 // TO COMPILE
-// gcc -g -Wall -pthread sem.c -lpthread -o sem.exe
+// gcc proc_2017_correction.c -lpthread -o proc

@@ -15,8 +15,6 @@ typedef struct {
 
 // Park rules declaration
 t_park_seasons seasons;
-// Semaphore declaration
-sem_t mutex_reproduction, mutex_hunting, mutex_inspection;
 
 // Critical object to protect (population of deers)
 int deers = 0;
@@ -45,7 +43,7 @@ t_park_seasons read_seasons()
 	seasons.reproduction_seasons 	= malloc(sizeof(int) * 12);
 	seasons.hunting_seasons 		= malloc(sizeof(int) * 12);
 
-	FILE * file = fopen("fseasons", "r");
+	FILE * file = fopen("np_rules.txt", "r");
 	int i;
 	char c;
 	for(i = 0; i < 12; i++)
@@ -85,14 +83,13 @@ void * code_thread_deer(void * arg)
 {
 	while(deers > 0 && deers < 1000 && testing_period())
 	{		
-		sem_wait(&mutex_reproduction);
 		if(seasons.reproduction_seasons[month])
 		{
 			deers = deers + 15 * deers / 100;
 			// printing population after reproduction		
 			//printf("Reproduction: %d\n", deers);
 		}
-		sem_post(&mutex_hunting);
+		sleep(2);
 	}
 	return NULL;
 }
@@ -104,15 +101,15 @@ void * code_thread_deer(void * arg)
 void * code_thread_hunter(void *arg)
 {
 	while (deers > 0 && deers < 1000 && testing_period())
-	{		
-		sem_wait(&mutex_hunting);
+	{
+		sleep(1);
 		if(seasons.hunting_seasons[month])
 		{
 			deers = deers - 25;
 			// printing population after hunting
 			//printf("Hunting : %d\n", deers);
 		}
-		sem_post(&mutex_inspection);
+		sleep(1);
 	}	
 	return NULL;
 }
@@ -125,12 +122,11 @@ void * code_thread_inspector(void *arg)
 {
 	while (deers > 0 && deers < 1000 && testing_period())
 	{
-		sem_wait(&mutex_inspection);
+		sleep(2);
 		printf("Population on %d/%d: %d\n", (month + 1), year, MAX(0,deers));
 		year = year + (month + 1) / 12;
 		month = (month + 1) % 12;
 		//printf("----------\n");
-		sem_post(&mutex_reproduction);
 	}
 	return NULL;
 }
@@ -139,8 +135,8 @@ int main(int argc, char *argv[])
 {
 	if (argc < 2)
 	{
-		printf("cctp_2017 : operand missing\n");
-		printf("Using : ./cctp_2017 value\n");
+		printf("thr_sleep : operand missing\n");
+		printf("Using : ./thr_sleep value\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -148,15 +144,10 @@ int main(int argc, char *argv[])
 	deers = atoi(argv[1]);
 
 	seasons = read_seasons();
-	print_seasons(seasons);
+	//print_seasons(seasons);
 
 	// Declaration du thread
 	pthread_t thread_deer, thread_hunter, thread_inspector;
-
-	/* Initialisation du semaphore */
-	sem_init(&mutex_reproduction, 0, 1);
-	sem_init(&mutex_hunting, 0, 0);
-	sem_init(&mutex_inspection, 0, 0);
 
 
 	// Creation of 3 threads
@@ -181,11 +172,6 @@ int main(int argc, char *argv[])
 	pthread_join(thread_hunter, NULL);
 	pthread_join(thread_inspector, NULL);
 
-	/* Destruction of semaphores */
-	sem_destroy(&mutex_reproduction);
-	sem_destroy(&mutex_hunting);
-	sem_destroy(&mutex_inspection);
-
 	int survivors = MAX(0,deers);
 	printf("Survivors %d\n", survivors);
 	
@@ -193,4 +179,4 @@ int main(int argc, char *argv[])
 }
 
 // TO COMPILE
-// gcc -g -Wall -pthread sem.c -lpthread -o sem.exe
+// gcc thr_2017.c -lpthread -o thr_sleep

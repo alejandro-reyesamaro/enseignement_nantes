@@ -1,0 +1,247 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[section]{placeins}
+
+
+%\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\topmargin}{-.675in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\textwidth}{1.7in}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+
+\usepackage{turnstile}
+\newcommand{\dednat}[2]{#1\hspace{10pt}$\sdtstile{N}{}$\hspace{10pt}#2}
+\newcommand{\Dednat}[1]{$\sdtstile{N}{}$\hspace{10pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\usepackage{graphicx}
+\RequirePackage{tikz}
+\usepackage{fancyvrb}
+\fvset{frame=single,framesep=1mm,fontfamily=courier,fontsize=\normalsize,numbers=left,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\newcommand{\str}[1]{\textcolor{red}{#1}}
+\newcommand{\comment}[1]{\textcolor{dgreen}{#1}}
+\newcommand{\function}[1]{\textcolor{blue}{#1}}
+
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+\Large{\bf Traitement Automatique des Langues}
+
+(corrections)
+\end{center}
+
+{\bf{{\large Exercice 1 :} Coder/décoder}}
+
+\begin{Verbatim}
+\textbf{function} \function{encode}(ch : \textbf{chaine}, dec : \textbf{entier}) : \textbf{chaine}
+\textbf{variables}
+	code : \textbf{chaine} 
+	i, new_ascii, ascii_base : \textbf{entier}
+	new_char : \textbf{caractere}
+\textbf{Debut}
+  ascii_base <- Caractere_vers_Ascii(\str{'A'})
+  \textbf{pour} i \textbf{allant de} 0 \textbf{a} Longueur(ch) - 1 \textbf{faire}
+    \comment{// décalage par rapport à zero :}
+    new_ascii <- Caractere_vers_Ascii(ch[i]) - ascii_base + dec
+    \comment{// homogénéisation et décalage :}
+    new_ascii <- new_ascii \textbf{mod} 26 + ascii_base
+    new_char <- Ascii_vers_Caractere(new_ascii)
+    code <- code + new_char
+  \textbf{fin pour}
+  \textbf{retourner} code
+\textbf{Fin}
+\end{Verbatim}
+
+\begin{Verbatim}
+\textbf{function} \function{decode}(code : \textbf{chaine}, dec : \textbf{entier}) : \textbf{entier}
+\textbf{Debut}
+  \textbf{retourner} \function{encode}(code, 26 - (dec \textbf{mod} 26))
+\textbf{Fin}
+\end{Verbatim}
+
+\begin{Verbatim}
+\textbf{Algorithme} Trouver le codage Cesar
+\textbf{variables}
+  code, reponse : \textbf{chaine}
+  dec : \textbf{entier}
+\textbf{Debut}
+  code <- Saisie(\str{"Message codé :"})
+  reponse <- \str{'N'}
+  dec <- 1
+  \textbf{tant que}(reponse != \str{'O'} \textbf{et} reponse != \str{'o'} \textbf{et} dec < 26) \textbf{faire}
+    Ecrire(\function{decode}(code, dec))
+    reponse <- Saisie(\str{"C'est la bonne ? ('O' : oui, 'N' : non)"})
+    dec <- dec + 1
+  \textbf{fin tant que}
+  \textbf{si} (reponse = \str{'o'} \textbf{ou} reponse = \str{'O'}) \textbf{alors}
+    Ecrire(\str{"Trouvé : decalage "} + EnChaine(dec - 1));
+  \textbf{fin si}
+\textbf{Fin}
+\end{Verbatim}
+
+\newpage
+
+{\bf{{\large Exercice 2 :} Fréquence des lettres}}
+
+\begin{Verbatim}
+\textbf{function} \function{monMajuscule}(car : \textbf{caractere}) : \textbf{caractere}
+\textbf{Debut}
+  \textbf{si}("éèêëÉÈÊË".indexOf(car) != -1) \textbf{alors} car <- "E"
+    \textbf{sinon si} ("àâäáÀÂÄÁ".indexOf(car) != -1) \textbf{alors} car <- "A"
+    \textbf{sinon si} ("îïíìÎÍÏÌ".indexOf(car) != -1) \textbf{alors} car <- "I"
+    \textbf{sinon si} ("ôöóòÔÓÒÖ".indexOf(car) != -1) \textbf{alors} car <- "O"
+    \textbf{sinon si} ("ùûüúÙÚÛÜ".indexOf(car) != -1) \textbf{alors} car <- "U"
+    \textbf{sinon si} ("çÇ".indexOf(car) != -1) \textbf{alors} car <- "c"
+    \textbf{sinon si} ("ñÑ".indexOf(car) != -1) \textbf{alors} car <- "N"
+  \textbf{fin si}
+  \textbf{retourner} car;
+\end{Verbatim}
+
+\begin{Verbatim}
+\textbf{function} \function{frequence}(texte : \textbf{chaine}) : \textbf{tableau de caracteres}
+\textbf{variables}
+  freq : \textbf{tableau de 26 caracteres}
+  i, ascci, pos : \textbf{entier}
+\textbf{Debut}
+  \textbf{pour} i \textbf{allant de} 0 \textbf{a} Taille(freq) - 1 \textbf{faire} 
+    freq[i] <- 0
+  \textbf{fin pour}
+  \textbf{pour} i \textbf{allant de} 0 \textbf{a} Longueur(text) - 1 \textbf{faire}    
+    ascci <- Caractere_vers_Ascii(\function{monMajuscule}(text[i]))
+    pos <- ascci - 65
+    \textbf{si} (pos >= 0 \textbf{et} pos < 26) 
+      freq[pos] <- freq[pos] + 1
+  \textbf{fin pour}
+  retourner freq;
+\textbf{Fin}
+\end{Verbatim}
+
+{\bf{{\large Exercice 4 :} Compter les mots}}
+
+\begin{Verbatim}
+\textbf{function} \function{est_alphanum}(car : \textbf{caractere}) : \textbf{booleen}
+\textbf{variables}  
+  ascci : \textbf{entier}
+\textbf{Debut}
+  ascii <- Caractere_vers_Ascii(\function{monMajuscule}(car))
+  \textbf{retourner} (ascci >= 65 \textbf{et} ascci <= 90) \textbf{ou} (ascci >= 48 \textbf{et} ascci <= 57)
+\textbf{Fin}
+\end{Verbatim}
+
+\newpage
+
+\begin{Verbatim}
+\textbf{function} \function{mots}(texte : \textbf{chaine}) : \textbf{entier}
+\textbf{variables}
+  c, i : \textbf{entier}
+  mot : \textbf{chaine}
+\textbf{Debut}
+  c <- 0
+  mot <- ""  
+  \textbf{pour} i \textbf{allant de} 0 \textbf{a} Taille(freq) - 1 \textbf{faire} 
+    freq[i] <- 0
+  \textbf{fin pour}
+  \textbf{pour} i \textbf{allant de} 0 \textbf{a} Longueur(text) - 1 \textbf{faire}    
+    \textbf{si}(\function{est_alphanum}(texte[i])) \textbf{alors}
+      mot <- mot + texte[i]
+    \textbf{sinon}
+      \textbf{si}(mot != "")
+        \comment{// faire quelque chose avec le mon trouvé}
+        c <- c + 1
+        mot <- ""
+      \textbf{finsi}
+    \textbf{fin si}
+  \textbf{fin pour}
+  \textbf{retourner} c
+\textbf{Fin}
+\end{Verbatim}
+
+\vspace{80pt}
+
+{\bf{{\large Exercice 7 :} Automate}}
+
+\begin{itemize}
+\item ``chameau'' $\rightarrow$ $\{$\textbf{1}, 2, 3, 4, 8, 9, 10, \textbf{7}$\}$
+\item Le mot ``chamelle'' ne fait pas partie du langage de l'automate, parce-que après la transition 8-9 l'automate bloque.
+\item Le mot ``chato'' ne fait pas partie du langage de l'automate, parce-que l'état 6, n'est pas final.
+\item $\{$chameau, chacal, chat, chatte, chaton, chevre, chevreuil, chevrot, chiot, chien, chienne$\}$
+\item Momoire :
+	\begin{itemize}
+	\item Liste : $7+6+4+6+6+6+9+7+5+5+7=68$
+	\item Automate : $22 + 28 = 50$
+	\end{itemize}
+\item Temps :
+	\begin{itemize}
+	\item ``Chacal'' : 
+		\begin{itemize}
+		\item \underline{Liste :} 13 comparaisons
+			\begin{itemize}
+			\item[] chevre \textit{vs.} chacal = 3 comparaisons 
+			\item[] chat \textit{vs.} chacal = 4 comparaisons
+			\item[] chacal \textit{vs.} chacal = 6 comparaisons
+			\end{itemize} 
+		\item \underline{Automate :} 10 comparaisons
+		\end{itemize}	
+	\item ``Chiot'' : 
+		\begin{itemize}
+		\item \underline{Liste :} 11 comparaisons
+			\begin{itemize}
+			\item[] chevre \textit{vs.} chiot = 3 comparaisons 
+			\item[] chevrot \textit{vs.} chiot = 3 comparaisons
+			\item[] chiot \textit{vs.} chiot = 5 comparaisons
+			\end{itemize} 
+		\item \underline{Automate :} 8 comparaisons
+		\end{itemize}	
+	\item ``Chenille'' : 
+		\begin{itemize}
+		\item \underline{Liste :} 12 comparaisons
+			\begin{itemize}
+			\item[] chevre \textit{vs.} chenille = 4 comparaisons 
+			\item[] chevrot \textit{vs.} chenille = 4 comparaisons
+			\item[] chevreuil \textit{vs.} chenille = 4 comparaisons
+			\end{itemize} 
+		\item \underline{Automate :} 6 comparaisons
+		\end{itemize}	
+	\end{itemize}
+\item Six formes conjuguées du verbe ``jouer'' :
+
+\includegraphics[width=0.8\textwidth]{TD.png}
+\end{itemize}
+
+{\bf{{\large Exercice 8 :} Chercher une chaîne correspondant à une expression rationnelle}}
+
+\begin{itemize}
+\item \textbf{\texttt{a.+tion}} : $\{$\textbf{a}c\textbf{tion}, \textbf{a}limenta\textbf{tion}, ... $\}$
+\item \textbf{\texttt{ch.\{2-4\}}} : $\{$\textbf{ch}at, \textbf{ch}atte, ... $\}$
+\item \textbf{\texttt{ils?|elles?}} : $\{$il, ils, elle, elles$\}$
+\item \textbf{\texttt{(a|b)*}} : $\{$ $\phi$, a, b, ab, ba, aab, bba, abb, ...$\}$
+\item \textbf{\texttt{a*|b*}} : $\{$ $\phi$, a, aa, a...a, b, bb, b...b$\}$
+\item \textbf{\texttt{a*b*}} : $\{$ $\phi$, b, ab, aab, a...ab, a, abb, ab...b, a...ab...b$\}$
+\item \textbf{\texttt{ab*a}} : $\{$aa, aba, ab...ba$\}$
+\end{itemize}
+
+{\bf{{\large Exercice 9 :} Écrire des expressions rationnelles}}
+
+\begin{itemize}
+\item mots qui commencent par 'M', finissent pas 'E' et dont la longueur est comprise entre 2 et 5 : \texttt{M.{0-3}E}
+\item les mots qui contiennent 2 't' consécutifs :\texttt{.*tt.*}
+\item les nombres entiers écrits en binaire : \texttt{(0|1)+}
+\item les numéro de téléphone français : \texttt{/(/+33/)(0-9)\{9\}}
+\item une date au format (JJ/MM/AAAA) : \texttt{(0-9)\{2\}//(0-9)\{2\}//(0-9)\{4\}}
+\item les adresses IP : \texttt{(0-9)\{3\}(/.(0-9)\{3\})\{3\}}
+\item les nombres décimaux (les entiers en font partie) : \texttt{(0-9)+(/.(0-9)+)?}
+\end{itemize}
+
+\end{document}

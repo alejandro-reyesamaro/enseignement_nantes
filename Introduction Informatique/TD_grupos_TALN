@@ -17,22 +17,6 @@ function encode(mot, dec) {
   return code;
 }
 
-function decode(code, dec) {
-  var mot = "";
-  var new_char;
-  var new_ascii;
-  var ascii_base = Caractere_vers_Ascii('A');
-  for (var i = 0; i < Longueur(code); i++) {
-	new_ascii = Caractere_vers_Ascii(code[i]) - ascii_base - dec;
-    if(new_ascii >= 0)
-      new_char = Ascii_vers_Caractere(new_ascii + ascii_base);
-    else
-      new_char = Ascii_vers_Caractere(26 + new_ascii + ascii_base);
-    mot += new_char;
-  }
-  return mot;
-}
-
 var text = "NACBTZCCZ";
 Ecrire(decode(text, 3));
 
@@ -102,30 +86,6 @@ function add(mot, tab, pos, occur)
   occur[pos] =1;
   return 1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function mots(text) {  
   var lexique = [""]; //Tableau(5);
