@@ -1,0 +1,112 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+\addtolength{\textheight}{0.6in}
+
+\usepackage{turnstile}
+\newcommand{\ded}[2]{#1\hspace{3pt}$\sdtstile{}{}$\hspace{3pt}#2}
+\newcommand{\Ded}[1]{$\sdtstile{}{}$\hspace{3pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\newcommand{\correctionI}{
+\underline{Correction :}
+
+Forme clausale :
+$$\Gamma \cup \left\{\lnot \Delta\right\}\Leftrightarrow\left\{\lnot P(X)\lor \lnot Q(X,c)\lor R\left(h(c)\right), P(U) \lor R(U), Q(Z,Y) \lor R(Z), \lnot R(T)\right\}$$
+\begin{enumerate}
+\item $\lnot P(X)\lor \lnot Q(X,c)\lor R\left(h(c)\right)$
+\item $P(U) \lor R(U)$
+\item $Q(Z,Y) \lor R(Z)$
+\item $\lnot R(T)$
+\item $\lnot P\left(h(c)\right) \lor R\left(h(c)\right)$ \hspace{20pt} [1,3] $\sigma_1=\left\{X=Z\leftarrow h(c), Y\leftarrow c\right\}$
+\item $R\left(h(c)\right)$ \hspace{20pt} [2,5] $\sigma_2=\left\{U=X=Z\leftarrow h(c), Y\leftarrow c\right\}$
+\item $\square$ \hspace{20pt} [4,6] $\sigma_3=\left\{T=U=X=Z\leftarrow h(c), Y\leftarrow c\right\}$
+\end{enumerate}
+}
+
+\newcommand{\correctionII}{
+\underline{Correction :}
+\begin{center}
+\begin{tabular}{rl}
+$hpe(x)$ : & $x$ est une haute personne d'état\\
+$ep(x)$ : & $x$ est entré dans le pays\\
+$fl(x,y)$ : & $x$ fouille $y$\\
+$dn(x)$ : & $x$ est douanier\\
+$sc(x)$ : & $x$ transporte des drogues ou seconde la transportation des drogues
+\end{tabular}
+\end{center}
+
+\begin{align*}
+(1) &= \forall x\, \left[ep(x) \land \lnot hpe(x) \imp \exists y\, \left[dn(y) \land fl(y,x)\right]\right]\\
+(2) &= \exists x\, \left[sc(x)\land ep(x) \land \forall y\, \left[fl(y,x)\imp sc(y)\right]\right]\\
+(3) &= \forall x\, \left[sc(x)\imp \lnot hpe(x)\right]\\
+\Delta &= \exists x\, \left[dn(x) \land sc(x)\right]
+\end{align*}
+
+\underline{Remarque :} (2) veut exprimer que si un douanier fouille quelqu'un qui a entrée de la drogue, il est coupable aussi !
+
+Forme clausale :
+
+\begin{tabular}{l}
+$\left\{\lnot ep(X) \lor hpe(X) \lor dn(h(X)), \lnot ep(X)\lor hpe(X) \lor fl(h(X),X),sc(a), ep(a)\right.$\\
+$\left.\lnot fl(Y,a) \lor sc(Y), \lnot sc(X)\lor \lnot hpe(X),\lnot dn(X) \lor \lnot sc(X)\right\}$
+\end{tabular}
+
+\begin{enumerate}
+\item $\lnot ep(X_1) \lor hpe(X_1) \lor dn(h(X_1))$
+\item $\lnot ep(X_1)\lor hpe(X_1) \lor fl(h(X_1),X_1)$
+\item $sc(a)$
+\item $ep(a)$
+\item $\lnot fl(Y,a) \lor sc(Y)$
+\item $\lnot sc(X_2)\lor \lnot hpe(X_2)$
+\item $\lnot dn(X_3) \lor \lnot sc(X_3)$
+\item $\lnot hpe(a)$ \hspace{20pt} [3,6] $\sigma_1=\left\{X_2\leftarrow a\right\}$
+\item $hpe(a) \lor dn(h(a))$ \hspace{20pt} [1,4] $\sigma_2=\left\{X_1=X_2\leftarrow a\right\}$
+\item $dn(h(a))$ \hspace{20pt} [8,9] 
+\item $hpe(a) \lor fl(h(x),a)$ \hspace{20pt} [2,4]
+\item $fl(h(x),a)$ \hspace{20pt} [8,11]
+\item $sc(h(a))$ \hspace{20pt} [12,5] $\sigma_3=\left\{X_1=X_2\leftarrow a, Y\leftarrow h(a)\right\}$
+\item $\lnot dn(a)$ \hspace{20pt} [13,7] $\sigma_4=\left\{X_1=X_2=X_3\leftarrow a, Y\leftarrow h(a)\right\}$
+\item $\square$ \hspace{20pt} [10,14]
+\end{enumerate}
+}
+
+\begin{document}
+
+\begin{center}
+\Large{\bf TD 12.} \Large{\sc Logique de premier ordre}\\ Méthodes de \textit{Tableau} et \textit{Résolution}
+\end{center}
+
+{\bf{{\large Exercice 1:}} } Prouvez que $\Gamma\imp \Delta$, où :
+\begin{align*}
+\Gamma &= \left\{\forall x\, \left[ P(x)\imp\left(Q(x,c)\imp R\left(h(c)\right)\right)\right], \forall u\,\left[P(u) \lor R(u)\right], \forall y\, \forall z\, \left[Q(z,y) \lor R(z)\right]\right\}\\
+\Delta &= \exists t\, R(t)
+\end{align*}
+
+\correctionI{}
+
+{\bf{{\large Exercice 2:}} } Formalisez et prouvez le raisonnement suivant :
+\begin{enumerate}
+\item Les douaniers fouillent chacun qui entre le pays sauf des HPEs (hautes personnes d'état)
+\item Il y a quelqu'un qui est entré dans le pays et qui a transporté les drogues.
+\item Personne parmi les HPEs n'a secondé la transportation des drogues. 
+\end{enumerate} 
+$\Delta$ : Alors, il y a un douanier qui seconde la transportation des drogues.
+
+\correctionII{}
+
+\end{document}
