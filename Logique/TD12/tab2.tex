@@ -1,0 +1,219 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{matrix,shapes,arrows,positioning,chains}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\textwidth}{1.7in}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[section]{placeins}
+
+\usepackage{turnstile}
+\newcommand{\ded}[2]{#1\hspace{3pt}$\sdtstile{}{}$\hspace{3pt}#2}
+\newcommand{\Ded}[1]{$\sdtstile{}{}$\hspace{3pt}#1}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\spc}{.\hspace{5pt}}
+
+\newcommand{\oneNODEone}{%
+\begin{align*}
+1\spc& \forall x_1\, \left[ep(x_1) \land \lnot hpe(x_1) \imp \exists y\, \left[dn(y) \land fl(y,x_1)\right]\right]\\
+  & \equiv \forall x\, \exists y\, \left[\left(\lnot ep(x_1) \lor hpe(x_1) \lor dn(y)\right) \land \left(\lnot ep(x_1) \lor hpe(x_1) \lor fl(y,x_1)\right)\right]\\
+2\spc& \exists x\, \left[sc(x)\land ep(x) \land \forall y\, \left[fl(y,x)\imp sc(y)\right]\right] \\
+  & \equiv \exists x\, \forall y\, \left[sc(x)\land ep(x) \land \left(\lnot fl(y,x) \lor sc(y)\right)\right]\\
+3\spc& \forall x_2\, \left[sc(x_2)\imp \lnot hpe(x_2)\right]\\
+  & \equiv \forall x_2\, \left[\lnot sc(x_2)\lor \lnot hpe(x_2)\right]\\
+4\spc& \lnot \exists x_3\, \left[dn(x_3) \land sc(x_3)\right]\\
+  & \equiv \forall x_3\, \left[\lnot dn(x_3) \lor \lnot sc(x_3)\right]
+\end{align*}
+}
+
+\newcommand{\oneNODEtwo}{%
+\begin{align*}
+5\spc& \forall x\, \left[\left(\lnot ep(x_1) \lor hpe(x_1) \lor dn(h(x_1))\right) \land \left(\lnot ep(x_1) \lor hpe(x_1) \lor fl(h(x_1),x_1)\right)\right] & [\text{ext 1.}: \exists y/h(x_1)]\\
+6\spc& \left(\left(\lnot ep(X_1) \lor hpe(X_1) \lor dn(h(X_1))\right) \land \left(\lnot ep(X_1) \lor hpe(X_1) \lor fl(h(X_1),X_1)\right)\right) & [\text{ext 5.}: \forall x_1/X_1]\\
+7\spc& \lnot ep(X_1) \lor hpe(X_1) \lor dn(h(X_1)) & [\text{ext 6.}]\\
+8\spc& \lnot ep(X_1) \lor hpe(X_1) \lor fl(h(X_1),X_1) & [\text{ext 6.}]\\
+9\spc& \exists x\, \left[sc(x)\land ep(x) \land \left(\lnot fl(Y,x) \lor sc(Y)\right)\right] & [\text{ext 2.}: \forall y/Y] \\
+10\spc& sc(a)\land ep(a) \land \left(\lnot fl(Y,a) \lor sc(Y)\right) & [\text{ext 9.}: \exists x/a] \\
+11\spc& sc(a) & [\text{ext 10.}] \\
+12\spc& ep(a) \land \left(\lnot fl(Y,a) \lor sc(Y)\right) & [\text{ext 10.}] \\
+13\spc& ep(a) & [\text{ext 12.}] \\
+14\spc& \lnot fl(Y,a) \lor sc(Y) & [\text{ext 12.}] \\
+15\spc& \lnot sc(X_2)\lor \lnot hpe(X_2) & [\text{ext 3.}: \forall x_2/X_2] \\
+16\spc& \lnot dn(X_3) \lor \lnot sc(X_3) & [\text{ext 4.}: \forall x_3/X_3] \\
+\end{align*}
+}
+
+\newcommand{\nDsiete}{%
+\begin{align*}
+17\spc& \lnot ep(X_1) & [\text{br 7.}]\\
+&\square~ [13.,17.]\\
+& \sigma_1 = \left\{X_1\leftarrow a\right\}\\
+\end{align*}
+}
+
+\newcommand{\nDocho}{%
+\begin{align*}
+18\spc& hpe(X_1) \lor dn(h(X_1)) & [\text{br 7.}]\\
+\end{align*}
+}
+
+\newcommand{\nDnueve}{%
+\begin{align*}
+19\spc& \lnot sc(X_2) & [\text{br 15.}]\\
+&\square~ [11.,19.]\\
+& \sigma_2 = \left\{X_2\leftarrow a\right\}\\
+\end{align*}
+}
+
+\newcommand{\nV}{%
+\begin{align*}
+20\spc& \lnot hpe(X_2) & [\text{br 15.}]\\
+\end{align*}
+}
+
+\newcommand{\nVuno}{%
+\begin{align*}
+21\spc& hpe(X_1) & [\text{br 18.}]\\
+&\square~ [20.,21.]\\
+& \sigma_3 = \left\{X_1 = X_2\right\}\\
+\end{align*}
+}
+
+\newcommand{\nVdos}{%
+\begin{align*}
+22\spc& dn(h(X_1)) & [\text{br 18.}]\\
+\end{align*}
+}
+
+\newcommand{\nVtres}{%
+\begin{align*}
+23\spc& \lnot dn(X_3) & [\text{br 16.}]\\
+&\square~ [22.,23.]\\
+& \sigma_4 = \left\{X_3 = h(X_1)\right\}\\
+\end{align*}
+}
+
+\newcommand{\nVcuatro}{%
+\begin{align*}
+24\spc& \lnot sc(X_3) & [\text{br 16.}]\\
+\end{align*}
+}
+
+\newcommand{\nVcinco}{%
+\begin{align*}
+25\spc& \lnot fl(Y,a) & [\text{br 14.}]\\
+\end{align*}
+}
+
+\newcommand{\nVseis}{%
+\begin{align*}
+26\spc&  sc(Y) & [\text{br 14.}]\\
+&\square~ [24.,26.]\\
+& \sigma_5 = \left\{Y = X_3\right\}\\
+\end{align*}
+}
+
+\newcommand{\nVsiete}{%
+\begin{align*}
+27\spc&  \lnot ep(X_1) & [\text{br 8.}]\\
+&\square~ [13.,27.]\\
+& \sigma_6 = \left\{X_1\leftarrow a\right\}\\
+\end{align*}
+}
+
+\newcommand{\nVocho}{%
+\begin{align*}
+28\spc& hpe(X_1) \lor fl(h(X_1),X_1) & [\text{br 8.}]\\
+\end{align*}
+}
+
+\newcommand{\nVnueve}{%
+\begin{align*}
+29\spc& hpe(X_1) & [\text{br 28.}]\\
+&\square~ [20.,29.]\\
+&\sigma_7 = \left\{X_1=X_2\right\}\\
+\end{align*}
+}
+
+\newcommand{\nT}{%
+\begin{align*}
+30\spc& fl(h(X_1),X_1) & [\text{br 28.}]\\
+&\square~ [25.,30.]\\
+&\sigma_8 = \left\{Y\leftarrow h(X_1), X_1 \leftarrow a\right\}\\
+\end{align*}
+}
+
+\begin{document}
+\pagenumbering{gobble}
+{\bf TD 12. Exercice 2 :} Correction (Tableaux)
+
+% Define block styles
+\tikzset{
+block/.style={
+    %rectangle,
+    %draw,
+    text width=16em,
+    text centered,
+    %rounded corners
+},
+rectangle connector/.default=-2cm,
+straight connector/.style={
+    connector,
+    to path=--(\tikztotarget) \tikztonodes
+}
+}
+
+\begin{tikzpicture}[scale=0.8]
+%\matrix (m)[matrix of nodes, column  sep=2cm,row  sep=8mm, align=center, nodes={rectangle,draw, anchor=center} ]{
+\matrix (m)[matrix of nodes, column  sep=0.8cm,row  sep=5mm, align=center, nodes={anchor=center} ]{
+|[block]|{\oneNODEone} & \\
+|[block]|{\oneNODEtwo} & \\
+|[block]|{\nDsiete} & |[block]| {\nDocho} \\
+|[block]|{\nDnueve} & |[block]| {\nV} \\
+|[block]|{\nVuno} & |[block]| {\nVdos} \\
+%|[block]|{\nDseis} & |[block]| {\nDsiete}\\
+};
+\path [>=latex,-] (m-1-1) edge (m-2-1);
+\path [>=latex,-] (m-2-1) edge (m-3-1);
+\path [>=latex,-] (m-2-1) edge (m-3-2);
+\path [>=latex,-] (m-3-2) edge (m-4-1);
+\path [>=latex,-] (m-3-2) edge (m-4-2);
+\path [>=latex,-] (m-4-2) edge (m-5-1);
+\path [>=latex,-] (m-4-2) edge (m-5-2);
+%\path [>=latex,-] (m-5-1) edge (m-6-1);
+%\path [>=latex,-] (m-5-1) edge (m-6-2);
+\end{tikzpicture}
+
+\newpage 
+
+\begin{tikzpicture}[scale=0.8]
+%\matrix (m)[matrix of nodes, column  sep=2cm,row  sep=8mm, align=center, nodes={rectangle,draw, anchor=center} ]{
+\matrix (m)[matrix of nodes, column  sep=0.8cm,row  sep=5mm, align=center, nodes={anchor=center} ]{
+ & |[block]| {\nVdos} \\
+|[block]|{\nVtres} & |[block]| {\nVcuatro} \\
+|[block]|{\nVcinco} & |[block]| {\nVseis} \\
+|[block]|{\nVsiete} & |[block]| {\nVocho}\\
+|[block]|{\nVnueve} & |[block]| {\nT}\\
+};
+\path [>=latex,-] (m-1-2) edge (m-2-1);
+\path [>=latex,-] (m-1-2) edge (m-2-2);
+\path [>=latex,-] (m-2-2) edge (m-3-1);
+\path [>=latex,-] (m-2-2) edge (m-3-2);
+\path [>=latex,-] (m-3-1) edge (m-4-1);
+\path [>=latex,-] (m-3-1) edge (m-4-2);
+\path [>=latex,-] (m-4-2) edge (m-5-1);
+\path [>=latex,-] (m-4-2) edge (m-5-2);
+%\path [>=latex,-] (m-5-1) edge (m-6-1);
+%\path [>=latex,-] (m-5-1) edge (m-6-2);
+\end{tikzpicture}
+
+$$\Sigma = \left\{X_1=X_2 \leftarrow a, X_3=Y \leftarrow h(a)\right\}$$
+
+\end{document}

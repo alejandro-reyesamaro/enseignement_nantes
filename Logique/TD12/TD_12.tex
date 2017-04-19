@@ -80,7 +80,7 @@ $\left.\lnot fl(Y,a) \lor sc(Y), \lnot sc(X)\lor \lnot hpe(X),\lnot dn(X) \lor \
 \item $hpe(a) \lor fl(h(x),a)$ \hspace{20pt} [2,4]
 \item $fl(h(x),a)$ \hspace{20pt} [8,11]
 \item $sc(h(a))$ \hspace{20pt} [12,5] $\sigma_3=\left\{X_1=X_2\leftarrow a, Y\leftarrow h(a)\right\}$
-\item $\lnot dn(a)$ \hspace{20pt} [13,7] $\sigma_4=\left\{X_1=X_2=X_3\leftarrow a, Y\leftarrow h(a)\right\}$
+\item $\lnot dn(h(a))$ \hspace{20pt} [13,7] $\sigma_4=\left\{X_1=X_2\leftarrow a, X_3=Y\leftarrow h(a)\right\}$
 \item $\square$ \hspace{20pt} [10,14]
 \end{enumerate}
 }
@@ -91,7 +91,7 @@ $\left.\lnot fl(Y,a) \lor sc(Y), \lnot sc(X)\lor \lnot hpe(X),\lnot dn(X) \lor \
 \Large{\bf TD 12.} \Large{\sc Logique de premier ordre}\\ Méthodes de \textit{Tableau} et \textit{Résolution}
 \end{center}
 
-{\bf{{\large Exercice 1:}} } Prouvez que $\Gamma\imp \Delta$, où :
+{\bf{{\large Exercice 1 :}} } Prouvez que $\Gamma\imp \Delta$, où :
 \begin{align*}
 \Gamma &= \left\{\forall x\, \left[ P(x)\imp\left(Q(x,c)\imp R\left(h(c)\right)\right)\right], \forall u\,\left[P(u) \lor R(u)\right], \forall y\, \forall z\, \left[Q(z,y) \lor R(z)\right]\right\}\\
 \Delta &= \exists t\, R(t)
@@ -99,7 +99,7 @@ $\left.\lnot fl(Y,a) \lor sc(Y), \lnot sc(X)\lor \lnot hpe(X),\lnot dn(X) \lor \
 
 \correctionI{}
 
-{\bf{{\large Exercice 2:}} } Formalisez et prouvez le raisonnement suivant :
+{\bf{{\large Exercice 2 :}} } Formalisez et prouvez le raisonnement suivant :
 \begin{enumerate}
 \item Les douaniers fouillent chacun qui entre le pays sauf des HPEs (hautes personnes d'état)
 \item Il y a quelqu'un qui est entré dans le pays et qui a transporté les drogues.

@@ -1,0 +1,144 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{matrix,shapes,arrows,positioning,chains}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\textwidth}{1.7in}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[section]{placeins}
+
+\usepackage{turnstile}
+\newcommand{\ded}[2]{#1\hspace{3pt}$\sdtstile{}{}$\hspace{3pt}#2}
+\newcommand{\Ded}[1]{$\sdtstile{}{}$\hspace{3pt}#1}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\spc}{.\hspace{5pt}}
+
+\newcommand{\oneNODEone}{%
+\begin{align*}
+1\spc& \forall x\, \left[ P(x)\imp\left(Q(x,c)\imp R\left(h(c)\right)\right)\right]\\
+  & \equiv \forall x\, \left[\lnot P(x)\lor \lnot Q(x,c)\lor R\left(h(c)\right)\right]\\
+2\spc& \forall u\,\left[P(u) \lor R(u)\right] \\
+3\spc& \forall y\, \forall z\, \left[Q(z,y) \lor R(z)\right]\\
+4\spc&\lnot \exists t\, R(t)\\
+  & \equiv \forall t\, \lnot R(t)
+\end{align*}
+}
+
+\newcommand{\oneNODEtwo}{%
+\begin{align*}
+5\spc& \lnot P(X)\lor \lnot Q(X,c)\lor R\left(h(c)\right) & [\text{ext 1.}: \forall x/X]\\
+6\spc& P(U) \lor R(U) & [\text{ext 2.}: \forall u/U]\\
+7,8\spc& Q(Z,Y) \lor R(Z) & [\text{ext 3.}: \forall z/Z, \forall y/Y]\\
+9\spc& \lnot R(T) & [\text{ext 4.}: \forall t/T]
+\end{align*}
+}
+
+\newcommand{\nDiez}{%
+\begin{align*}
+10\spc& P(U) & [\text{br 6.}]\\
+\end{align*}
+}
+
+\newcommand{\nOnce}{%
+\begin{align*}
+11\spc& R(U) & [\text{br 6.}]\\
+&\square~ [9.,11.]\\
+& \sigma_1 = \left\{T=U\right\}\\
+\end{align*}
+}
+
+\newcommand{\nDoce}{%
+\begin{align*}
+12\spc& \lnot Q(X,c) \lor R(h(c)) & [\text{br 5.}]\\
+\end{align*}
+}
+
+\newcommand{\nTrece}{%
+\begin{align*}
+13\spc& \lnot P(X) & [\text{br 5.}]\\
+&\square~ [10.,13.]\\
+& \sigma_2 = \left\{X=U\right\}\\
+\end{align*}
+}
+
+\newcommand{\nCatorce}{%
+\begin{align*}
+14\spc& \lnot Q(X,c) & [\text{br 12.}]\\
+\end{align*}
+}
+
+\newcommand{\nQuince}{%
+\begin{align*}
+15\spc& R(h(c)) & [\text{br 12.}]\\
+&\square~ [9.,15.]\\
+& \sigma_3 = \left\{T\leftarrow h(c)\right\}\\
+\end{align*}
+}
+
+\newcommand{\nDseis}{%
+\begin{align*}
+16\spc& Q(Z,Y) & [\text{br 8.}]\\
+&\square~ [14.,16.]\\
+& \sigma_4 = \left\{Z=X, Y\leftarrow c\right\}\\
+\end{align*}
+}
+
+\newcommand{\nDsiete}{%
+\begin{align*}
+17\spc& R(Z) & [\text{br 8.}]\\
+&\square~ [9.,17.]\\
+& \sigma_5 = \left\{Z=T\right\}\\
+\end{align*}
+}
+
+\begin{document}
+\pagenumbering{gobble}
+{\bf TD 12. Exercice 1 :} Correction (Tableaux)
+
+% Define block styles
+\tikzset{
+block/.style={
+    %rectangle,
+    %draw,
+    text width=16em,
+    text centered,
+    %rounded corners
+},
+rectangle connector/.default=-2cm,
+straight connector/.style={
+    connector,
+    to path=--(\tikztotarget) \tikztonodes
+}
+}
+
+\begin{tikzpicture}[scale=0.8]
+%\matrix (m)[matrix of nodes, column  sep=2cm,row  sep=8mm, align=center, nodes={rectangle,draw, anchor=center} ]{
+\matrix (m)[matrix of nodes, column  sep=0.8cm,row  sep=5mm, align=center, nodes={anchor=center} ]{
+|[block]|{\oneNODEone} & \\
+|[block]|{\oneNODEtwo} & \\
+|[block]|{\nDiez} & |[block]| {\nOnce} \\
+|[block]|{\nDoce} & |[block]| {\nTrece} \\
+|[block]|{\nCatorce} & |[block]| {\nQuince} \\
+|[block]|{\nDseis} & |[block]| {\nDsiete}\\
+};
+\path [>=latex,-] (m-1-1) edge (m-2-1);
+\path [>=latex,-] (m-2-1) edge (m-3-1);
+\path [>=latex,-] (m-2-1) edge (m-3-2);
+\path [>=latex,-] (m-3-1) edge (m-4-1);
+\path [>=latex,-] (m-3-1) edge (m-4-2);
+\path [>=latex,-] (m-4-1) edge (m-5-1);
+\path [>=latex,-] (m-4-1) edge (m-5-2);
+\path [>=latex,-] (m-5-1) edge (m-6-1);
+\path [>=latex,-] (m-5-1) edge (m-6-2);
+\end{tikzpicture}
+
+$$\Sigma = \left\{T=U=X=Z \leftarrow h(c), Y \leftarrow c\right\}$$
+
+\end{document}
