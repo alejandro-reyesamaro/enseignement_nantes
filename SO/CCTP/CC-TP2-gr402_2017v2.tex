@@ -1,0 +1,121 @@
+% !TEX encoding = UTF-8 Unicode
+%================================================================
+% TP2-X4I0010.tex
+% L2_X4I0010: Système d'exploitation
+%====================================================================
+\documentclass[CC,sansRappel,12pt]{tdtp-utf8}
+\usepackage{graphicx}
+\newcommand{\regle}[2]{$ #1 \rightarrow #2 $}
+\newcommand{\tab}{\hspace{0.5cm}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\RA}{\Rightarrow}
+
+\cursus{L2 Informatique}
+\intitule{X4I0010 -- Système d'exploitation}
+\date{}
+\title{Contrôle de travaux pratiques -- Contrôle final}
+
+\usepackage{fancyvrb}
+\fvset{frame=single,framesep=1mm,fontfamily=courier,fontsize=\normalsize,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
+\definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\newcommand{\totranslate}[1]{\textcolor{blue}{#1}}
+\newcommand{\tocorrect}[1]{\textcolor{dgreen}{#1}}
+
+\begin{document}
+
+%====================================================================
+\begin{feuille}
+
+\hspace*{1mm} \hfill Épreuve de contrôle continu du 27 avril 2017 (groupe 402)\\
+\hspace*{1mm} \hfill Tous documents autorisés\\[5mm]
+
+\fbox{\parbox{0.9\textwidth}{
+%Vous rédigerez un compte-rendu sur lequel vous
+%indiquerez la réponse à chaque question, vos
+%explications et commentaires (interprétation
+%du résultat), et le cas échéant, la ou les commandes
+%utilisées.
+%
+Déposez votre devoir sous la forme d'une seule archive compressée sur {\sc Madoc} dans l'espace prévu à cet effet (Dépôt des compte-rendus de TP CC $\rightarrow$ Groupe 402 : Contrôle continu de TP -- Contrôle final). Veillez bien à ce que votre archive comporte les noms du binôme de TP (ex : \texttt{dupont-durant\_TPCC\_Controle\_final.zip}).
+Le contenu de l'archive sera constituée des fichiers sources commentés des 2 programmes.}}
+
+\vspace{20pt}
+
+Dans un parc naturel nous avons introduit une population de 150 cerfs (deers) avec l'objectif d'encourager la chasse chez les habitants de la région. Dans le même temps nous souhaitons que la population de cerfs ne décroise pas rapidement. Pour cette raison nous disposons d'un inspecteur chargé de vérifier l'état de la population une fois par mois.
+
+À partir de la fréquence de reproduction des cerfs et de divers facteurs (météorologique, alimentation, prédateur, etc.) il est établi des règles indiquant les mois de l'année où la chasse des cerfs est autorisée dans le parc.
+
+L'objectif de cet exercice est de simuler l'évolution de la population de cerfs dans le parc naturel au fil des mois.
+
+\begin{exercice}[Les processus]
+
+Dans un premier temps, nous souhaitons publier les règles de chasse du parc et les périodes de reproduction des cerfs, pour chaque mois. Pour cela, nous allons utiliser deux processus différents:
+
+\begin{itemize}
+\item Un processus \textbf{A} qui n'a pas le droit d'afficher le mot ``\textit{hunting}'', et
+\item Un processus \textbf{B} qui n'a pas le droit d'afficher le mot ``\textit{reproduction}''.
+\end{itemize}
+
+\textbf{Question 1:} En utilisant des processus et des signaux, complétez le programme \texttt{proc\_2017.cpp} (à télécharger depuis {\sc Madoc}) pour afficher les règles du parc (présents dans le fichier \texttt{np\_rules.txt}) selon l'exemple suivent :
+%\underline{Exemple 1 :}
+\vspace{10pt}
+
+Contenu du fichier \texttt{np\_rules.txt} :
+\begin{Verbatim}
+000111111101 
+101011111110 
+\end{Verbatim}
+
+Pourtant, le texte à afficher pour l'exemple précédant sera :
+
+\begin{Verbatim}
+1 -> Only hunting 
+2 -> Nothing
+3 -> Only hunting 
+4 -> Only reproduction
+5 -> Reproduction and hunting 
+6 -> Reproduction and hunting 
+7 -> Reproduction and hunting 
+8 -> Reproduction and hunting 
+9 -> Reproduction and hunting 
+10 -> Reproduction and hunting 
+11 -> Only hunting 
+12 -> Only reproduction
+\end{Verbatim}
+
+\end{exercice}
+
+\begin{exercice}[Les threads et les sémaphores]
+
+Le programme \texttt{thr\_2017.cpp} (à télécharger depuis {\sc Madoc}) contient une simulation, du comportement que nous souhaitons étudier dans le parc naturel en utilisant la fonction \texttt{sleep(...)}. Chaque acteur (cerfs, chasseurs, inspecteur) seront représentés par un fil d'exécution (\textit{thread}) différent. Chacun d'eux doivent suivre les règles suivantes:
+
+\begin{itemize}
+\item \underline{Cerfs :}
+\begin{enumerate}
+\item Les cerfs se reproduisent une seule fois pendant les 10 premiers jours de chaque mois indiqué dans les règles générales du parc (fichier \texttt{np\_rules.txt}), selon l'équation suivante: $$pop_{i+1} = 1.15\cdot pop_{i}$$ $pop_k$  représentant la population des cerfs du mois $k$.
+\item Les cerfs peuvent se reproduire le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$.
+\end{enumerate}
+\item \underline{Chasseurs:}
+\begin{enumerate}
+\item Les chasseurs ont le droit de chasser seulement un jour dans la deuxième quinzaine de chaque mois indiqué dans les règles générales du parc (fichier \texttt{np\_rules.txt}).
+\item Les chasseurs ont le droit de chasser un maximum de 25 animaux par mois.
+\item[] \textbf{(bonus) : } Implémentez une fonction de probabilité (uniforme, par exemple) pour faire varier le nombre de cerfs chassé à chaque fois.
+\item Les chasseurs ont de droit de chasser le mois $X$ si l'inspecteur a déjà publié les résultats de l'inspection du mois $X-1$.
+\end{enumerate}
+\item \underline{Inspecteur:}
+\begin{enumerate}
+\item L'inspecteur publie les résultats de l'inspection le dernier jour de chaque mois à 23h59, en affichant la population actuelle des cerfs dans le parc naturel.
+\end{enumerate}
+\end{itemize}
+
+\textbf{Question 1 : } {En utilisant des \textit{threads} et des sémaphores, modifiez le programme \texttt{thr\_2017.cpp} (sans utiliser la fonction \texttt{sleep(...)}) pour obtenir le résultat qu'il affiche tout en respectant les lois décrites précédemment.}
+
+\textbf{Question 2 (bonus) :} {Modifiez le fichier \texttt{np\_rules.txt} afin que la population de cerfs survivre jusqu'à 1 janvier 2018. }
+
+\end{exercice}
+
+\end{feuille}
+
+\end{document}
+
