@@ -13,35 +13,20 @@
 \cursus{L2 Informatique}
 \intitule{X4I0010 -- Système d'exploitation}
 \date{}
-\title{Contrôle de travaux pratiques -- Contrôle final}
+\title{Contrôle de travaux pratiques -- Contrôle final \\ (barème)}
 
 \usepackage{fancyvrb}
 \fvset{frame=single,framesep=1mm,fontfamily=courier,fontsize=\normalsize,framerule=.3mm,numbersep=1mm,commandchars=\\\{\}}
 \definecolor{dgreen}{rgb}{0.0, 0.5, 0.0}
 \definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
-\newcommand{\totranslate}[1]{\textcolor{blue}{#1}}
-\newcommand{\tocorrect}[1]{\textcolor{dgreen}{#1}}
+\newcommand{\bare}[1]{\textcolor{blue}{#1}}
+\newcommand{\puntos}[1]{\textcolor{red}{\bf [#1 puntos]}}
+\newcommand{\punto}[1]{\textcolor{red}{\bf [#1 punto]}}
 
 \begin{document}
 
 %====================================================================
 \begin{feuille}
-
-\hspace*{1mm} \hfill Épreuve de contrôle continu du 27 avril 2017 (groupe 401)\\
-\hspace*{1mm} \hfill Tous documents autorisés\\[5mm]
-
-\fbox{\parbox{0.9\textwidth}{
-%Vous rédigerez un compte-rendu sur lequel vous
-%indiquerez la réponse à chaque question, vos
-%explications et commentaires (interprétation
-%du résultat), et le cas échéant, la ou les commandes
-%utilisées.
-%
-Déposez votre devoir sous la forme d'une seule archive compressée sur {\sc Madoc} dans l'espace prévu à cet effet. %(Dépôt des compte-rendus de TP CC $\rightarrow$ Groupe 402 : Contrôle continu de TP -- Contrôle final). 
-Veillez bien à ce que votre archive comporte les noms du binôme de TP (ex : \texttt{dupont-durant\_TPCC\_Controle\_final.zip}).
-Le contenu de l'archive sera constituée des fichiers sources des 2 programmes.}}
-
-\vspace{20pt}
 
 Dans un parc naturel nous avons introduit une population de 150 cerfs (deers) avec l'objectif d'encourager la chasse chez les habitants de la région. Dans le même temps nous souhaitons que la population de cerfs ne décroisse pas rapidement. Pour cette raison nous disposons d'un inspecteur chargé de vérifier l'état de la population une fois par mois.
 
@@ -49,7 +34,7 @@ Dans un parc naturel nous avons introduit une population de 150 cerfs (deers) av
 
 L'objectif de cet exercice est de simuler l'évolution de la population de cerfs dans le parc naturel au fil des mois.
 
-\begin{exercice}[Les processus]
+\begin{exercice}[Les processus \bare{\puntos{13}}]
 
 Dans un premier temps, nous souhaitons publier les règles de chasse du parc et les périodes de reproduction des cerfs, pour chaque mois. Pour cela, nous allons utiliser deux processus différents:
 
@@ -70,7 +55,7 @@ Contenu du fichier \texttt{np\_rules.txt} :
 
 La $1^{ère}$ ligne (resp. la $2^{ème}$) de ce fichier liste, pour les 12 mois de l'année, s'il s'agit d'un mois de reproduction (resp. de chasse) ou non.
 
-Ainsi, le texte affiché pour l'exemple précédent sera :
+Ainsi, le texte affiché pour l'exemple précédent sera : \newpage
 
 \begin{Verbatim}
 1 -> Only hunting 
@@ -89,7 +74,41 @@ Ainsi, le texte affiché pour l'exemple précédent sera :
 
 \end{exercice}
 
-\begin{exercice}[Les threads et les sémaphores]
+\puntos{4}: \bare{Utilizar la función \texttt{signal(...)} para la asignación de \textit{handlers} a señales.}
+\begin{Verbatim}
+\bare{signal (SIGUSR1, hand_SGL_test);}
+\bare{signal (SIGUSR2, hand_SGL_print_and_test);}
+\end{Verbatim}
+
+\puntos{3}: \bare{Utilizar la función \texttt{fork()} para la creación de procesos independientes, teniendo en cuenta sus respectivos identificadores (PID).}
+
+\begin{Verbatim}
+\bare{pid_t pid;}
+\bare{if((pid = fork()) == -1)}
+\bare{\{}
+\bare{   perror("Error forking");}
+\bare{   exit(1);}
+\bare{\}}
+\end{Verbatim}
+
+\puntos{3}: \bare{Saber como utilizar el PID para diferenciar las el proceder de cada proceso.}
+
+\begin{Verbatim}
+\bare{if (pid == 0)}
+\bare{\{ /* process 0 */}
+\bare{   ...}
+\bare{\}}
+\bare{else}
+\bare{\{ /* process 1 */}
+\bare{   ...}
+\bare{\}}
+\end{Verbatim}
+
+\puntos{3}: \bare{Dar una solución respetanto las reglas impuestas.}
+
+\newpage
+
+\begin{exercice}[Les threads et les sémaphores \bare{\puntos{7}}]
 
 Le programme \texttt{thr\_2017.cpp} (à télécharger depuis {\sc Madoc}) contient une simulation, du comportement que nous souhaitons étudier dans le parc naturel en utilisant la fonction \texttt{sleep(...)}. Chaque acteur (cerfs, chasseurs, inspecteur) seront représentés par un fil d'exécution (\textit{thread}) différent. Chacun d'eux doivent suivre les règles suivantes:
 
@@ -114,7 +133,75 @@ Le programme \texttt{thr\_2017.cpp} (à télécharger depuis {\sc Madoc}) contie
 
 \textbf{Question 1 : } {En utilisant des \textit{threads} et des sémaphores, modifiez le programme \texttt{thr\_2017.cpp} (sans utiliser la fonction \texttt{sleep(...)}) pour obtenir le résultat qu'il affiche tout en respectant les lois décrites précédemment.}
 
-\textbf{Question 2 (bonus) :} {Modifiez le fichier \texttt{np\_rules.txt} afin que la population de cerfs survivre jusqu'à 1 janvier 2018. }
+\bare{Utilización de semáforos:}
+\begin{itemize}
+\item \punto{1} \bare{Declaración de los semáforos necesarios.}
+\item[]\begin{Verbatim} 
+\bare{\textbf{sem_t} synchro_reproduction;}
+\bare{\textbf{sem_t} synchro_hunting}
+\bare{\textbf{sem_t} synchro_inspection;}
+\bare{\textbf{sem_t} mutex_deers;}
+\end{Verbatim}
+\item \punto{1} \bare{Utilización de las funciones \texttt{sem\_init(...)} y \texttt{sem\_destroy(...)} para la creación y destrucción de los semáforos.}
+\item[] \begin{Verbatim}
+\bare{int main()}
+\bare{\{}
+\bare{   ...}
+\bare{   /* Initialisation du semaphore */}
+\bare{   sem_init(&synchro_reproduction, 0, 1);}
+\bare{   sem_init(&synchro_hunting, 0, 0);}
+\bare{   sem_init(&synchro_inspection, 0, 0);}
+\bare{   sem_init(&mutex_deers, 0, 1);}
+\bare{   ...}
+\bare{   /* Destruction of semaphores */}
+\bare{   sem_destroy(&synchro_reproduction);}
+\bare{   sem_destroy(&synchro_hunting);}
+\bare{   sem_destroy(&synchro_inspection);}
+\bare{   sem_destroy(&mutex_deers);}
+\bare{\}}
+\end{Verbatim}
+\item \punto{1} \bare{Utilización de funciones \texttt{sem\_wait(...)} y \texttt{sem\_post()} para la syncronización.}
+\item \puntos{2} \bare{Correcta utilización de las funciones \texttt{sem\_wait(...)} y \texttt{sem\_post()} para la syncronización en cada \textit{thread}.}
+\item[] \bare{Deer thread:~}\begin{Verbatim}
+\bare{\textbf{void} * code_thread_deer(\textbf{void} * arg)}
+\bare{\{}
+\bare{   ...}
+\bare{   sem_wait(&synchro_reproduction);}
+\bare{   sem_wait(&mutex_deers);}
+\bare{   ...}
+\bare{   sem_post(&mutex_deers);}
+\bare{   sem_post(&synchro_hunting);}
+\bare{   ...}
+\bare{\}}
+\end{Verbatim}
+\item[] \bare{Hunter thread:~}\begin{Verbatim}
+\bare{\textbf{void} * code_thread_hunter(\textbf{void} * arg)}
+\bare{\{}
+\bare{   ...}
+\bare{   sem_wait(&synchro_hunting);}
+\bare{   sem_wait(&mutex_deers);}
+\bare{   ...}
+\bare{   sem_post(&mutex_deers);}
+\bare{   sem_post(&synchro_inspection);}
+\bare{   ...}
+\bare{\}}
+\end{Verbatim}
+\item[] \bare{Instector thread:~}\begin{Verbatim}
+\bare{\textbf{void} * code_thread_inspector(\textbf{void} * arg)}
+\bare{\{}
+\bare{   ...}
+\bare{   sem_wait(&synchro_inspection);}
+\bare{   sem_wait(&mutex_deers);}
+\bare{   ...}
+\bare{   sem_post(&mutex_deers);}
+\bare{   sem_post(&synchro_reproduction);}
+\bare{   ...}
+\bare{\}}
+\end{Verbatim}
+\item \puntos{2} \bare{Solución correcta respetando las reglas.}
+\end{itemize}
+
+\textbf{Question 2 (bonus) :} Modifiez le fichier \texttt{np\_rules.txt} afin que la population de cerfs survivre jusqu'à 1 janvier 2018. \bare{(Solo se tendrá en cuenta si la solución entregada es perfecta)}
 
 \end{exercice}
 

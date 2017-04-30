@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.20)  27 APR 2017 10:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.1.20)  28 APR 2017 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**CC-TP2-gr402_2017v2.tex
-(./CC-TP2-gr402_2017v2.tex
+**bareme.tex
+(./bareme.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 37 languages loaded.
 (./tdtp-utf8.cls
@@ -351,29 +351,28 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 \Gin@req@height=\dimen107
 \Gin@req@width=\dimen108
 )
-(./CC-TP2-gr402_2017v2.aux)
-\openout1 = `CC-TP2-gr402_2017v2.aux'.
+(./bareme.aux)
+\openout1 = `bareme.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 25.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 26.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \degres on input line 25.
-LaTeX Info: Redefining \dots on input line 25.
-LaTeX Info: Redefining \up on input line 25.
+LaTeX Info: Redefining \degres on input line 26.
+LaTeX Info: Redefining \dots on input line 26.
+LaTeX Info: Redefining \up on input line 26.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -436,89 +435,88 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for T1+phv on input line 29.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 30--32
+\ExSaveBoxa=\box30
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 37.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 46.
 
- []
-
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 42.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 42.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 42.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 42.
-\ExSaveBoxa=\box30
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 52.
-
-Overfull \hbox (16.95193pt too wide) in paragraph at lines 61--64
+Overfull \hbox (16.95193pt too wide) in paragraph at lines 46--49
 []\T1/ptm/b/n/12 Question 1 : \T1/ptm/m/n/12 En uti-li-sant des pro-ces-sus et 
 des si-gnaux, com-plé-tez le pro-gramme \T1/pcr/m/n/12 proc_2017.cpp
  []
 
 
-Overfull \hbox (43.26784pt too wide) in paragraph at lines 61--64
+Overfull \hbox (43.26784pt too wide) in paragraph at lines 46--49
 \T1/ptm/m/n/12 (à té-lé-char-ger de-puis \T1/ptm/m/sc/12 Ma-doc\T1/ptm/m/n/12 )
  pour af-fi-cher les règles du parc (pré-sents dans le fi-chier \T1/pcr/m/n/12 
 np_rules.txt\T1/ptm/m/n/12 )
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 56.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 56.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 56.
 
-LaTeX Warning: Command \` invalid in math mode on input line 71.
+LaTeX Warning: Command \` invalid in math mode on input line 56.
 
 Missing character: There is no è in font cmr8!
 
-LaTeX Warning: Command \` invalid in math mode on input line 71.
+LaTeX Warning: Command \` invalid in math mode on input line 56.
 
 Missing character: There is no è in font cmr8!
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 \ExSaveBoxb=\box31
 
-Overfull \hbox (26.67184pt too wide) in paragraph at lines 94--95
+Overfull \hbox (26.67184pt too wide) in paragraph at lines 113--114
 \T1/ptm/m/n/12 com-por-te-ment que nous sou-hai-tons étu-dier dans le parc na-t
 u-rel en uti-li-sant la fonc-tion \T1/pcr/m/n/12 sleep(...)\T1/ptm/m/n/12 .
  []
 
 
-Overfull \hbox (12.93196pt too wide) in paragraph at lines 115--116
+Overfull \hbox (12.93196pt too wide) in paragraph at lines 134--135
 []\T1/ptm/b/n/12 Question 1 :  \T1/ptm/m/n/12 En uti-li-sant des \T1/ptm/m/it/1
 2 threads \T1/ptm/m/n/12 et des sé-ma-phores, mo-di-fiez le pro-gramme \T1/pcr/
 m/n/12 thr_2017.cpp
  []
 
-[2] (./CC-TP2-gr402_2017v2.aux) ) 
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <12> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 140.
+[3] [4] [5] (./bareme.aux) ) 
 Here is how much of TeX's memory you used:
- 3568 strings out of 494272
- 48048 string characters out of 6160999
- 115174 words of memory out of 5000000
- 6768 multiletter control sequences out of 15000+600000
- 34176 words of font info for 43 fonts, out of 8000000 for 9000
+ 3573 strings out of 494272
+ 47965 string characters out of 6160999
+ 116226 words of memory out of 5000000
+ 6771 multiletter control sequences out of 15000+600000
+ 34797 words of font info for 45 fonts, out of 8000000 for 9000
  443 hyphenation exceptions out of 8191
- 37i,11n,45p,424b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips
-/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on CC-TP2-gr402_2017v2.pdf (2 pages, 98955 bytes).
+ 37i,11n,45p,411b,569s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base
+/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
+tic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bareme.pdf (5 pages, 114449 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
