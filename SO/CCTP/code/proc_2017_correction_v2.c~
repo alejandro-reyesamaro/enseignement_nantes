@@ -89,12 +89,13 @@ int main(int argc, char *argv[])
 	print_seasons(seasons);
 
 	pid_t pid;
+/*
 	if ( (pid = fork()) == -1 )
 	{
 		perror("Error forking"); 
 		exit(1);
 	}
-
+*/
 	signal (SIGUSR1, hand_SGL_test);
 	signal (SIGUSR2, hand_SGL_print_and_test);
 

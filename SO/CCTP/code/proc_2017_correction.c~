@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 	else
 	{ /* process 1 */	
 		printf("%d\n", pid);	
-		printf("%d\n", getpid());	
+		printf("%d\n", get_pid());	
 		int flag;		
 		for(i_reproduction_season = 0; i_reproduction_season < 12; i_reproduction_season++)
 		{

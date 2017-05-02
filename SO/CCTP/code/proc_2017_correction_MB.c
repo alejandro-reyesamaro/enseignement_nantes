@@ -75,7 +75,7 @@ void hand_SGL_test(int sgl)
 /// \abstract: signal to print the word "hunting"
 void hand_SGL_print_and_test(int sgl) 
 {
-	printf("hunting \n");
+	printf("%d:hunting \n",getpid());
 	if(i_hunting_season == 11)
 		exit(0);
 	else 
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 {
 	seasons = read_seasons();
 	print_seasons(seasons);
-
+	setbuf(stdout,NULL);
 	pid_t pid;
 	if ( (pid = fork()) == -1 )
 	{
@@ -98,17 +98,16 @@ int main(int argc, char *argv[])
 	signal (SIGUSR1, hand_SGL_test);
 	signal (SIGUSR2, hand_SGL_print_and_test);
 
-	if (pid == 0)
-	{ /* process 0 */
-		//printf("%d\n", getppid());
-		//printf("%d\n", pid);
+	if (pid != 0)
+	{ /* process 1 */
+		//printf("parent:%d|child:%d\n", getppid(),getpid());
 		while(1);
 	}
 	else
-	{ /* process 1 */	
-		printf("%d\n", pid);	
-		printf("%d\n", getpid());	
-		int flag;		
+	{ /* process 0 */
+		pid_t ppid = getppid();
+		//printf("%d:PID PARENT\n",ppid);	
+		int flag; 
 		for(i_reproduction_season = 0; i_reproduction_season < 12; i_reproduction_season++)
 		{
 			flag = seasons.reproduction_seasons[i_reproduction_season] * 10 + seasons.hunting_seasons[i_reproduction_season];
@@ -116,20 +115,20 @@ int main(int argc, char *argv[])
 			switch(flag)
 			{
 				case 0: 	// 0 - 0 : "Nothing"
-					printf("Nothing");
-					kill(pid, SIGUSR1);
+					printf("%d:Nothing",getpid());
+					kill(ppid, SIGUSR1);
 				break;
 				case 1: 	// 0 - 1 : "Only hunting"
-					printf("Only ");
-					kill(pid, SIGUSR2);
+					printf("%d:Only ",getpid());
+					kill(ppid, SIGUSR2);
 				break;
 				case 10: 	// 1 - 0 : "Only reproduction"
-					printf("Only reproduction");
-					kill(pid, SIGUSR1);
+					printf("%d:Only reproduction",getpid());
+					kill(ppid, SIGUSR1);
 				break;
 				case 11: 	// 1 - 1 : "Reproduction and hunting"
-					printf("Reproduction and ");
-					kill(pid, SIGUSR2);
+					printf("%d:Reproduction and ",getpid());
+					kill(ppid, SIGUSR2);
 				break;
 			}
 			//sleep(1);
@@ -141,3 +140,22 @@ int main(int argc, char *argv[])
 
 // TO COMPILE
 // gcc proc_2017_correction.c -lpthread -o proc
+/* Lo que veo yo como salida:
+medusa@medusa-VirtualBox:~/X4I0010/cctp_2017.rar Folder$ ./proc_mb 
+0 0 0 1 1 1 1 1 1 1 0 1 
+1 0 1 0 1 1 1 1 1 1 1 0 
+1 -> 14542:Only 14542:hunting 
+2 -> 14542:Nothing
+3 -> 14542:Only 14542:hunting 
+4 -> 14542:Only reproduction
+5 -> 14542:Reproduction and 14542:hunting 
+6 -> 14542:Reproduction and 14542:hunting 
+7 -> 14542:Reproduction and 14542:hunting 
+8 -> 14542:Reproduction and 14542:hunting 
+9 -> 14542:Reproduction and 14542:hunting 
+10 -> 14542:Reproduction and 14542:hunting 
+11 -> 14542:Only 14542:hunting 
+12 -> 14542:Only reproduction
+
+No veo que el child escriba su pid, ni que el escriba "hunting"
+*/

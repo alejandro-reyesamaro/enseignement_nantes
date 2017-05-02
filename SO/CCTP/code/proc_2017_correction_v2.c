@@ -89,25 +89,24 @@ int main(int argc, char *argv[])
 	print_seasons(seasons);
 
 	pid_t pid;
+/*
 	if ( (pid = fork()) == -1 )
 	{
 		perror("Error forking"); 
 		exit(1);
 	}
-
+*/
 	signal (SIGUSR1, hand_SGL_test);
 	signal (SIGUSR2, hand_SGL_print_and_test);
 
-	if (pid == 0)
+	if (pid = fork())
 	{ /* process 0 */
 		//printf("%d\n", getppid());
 		//printf("%d\n", pid);
 		while(1);
 	}
 	else
-	{ /* process 1 */	
-		printf("%d\n", pid);	
-		printf("%d\n", getpid());	
+	{ /* process 1 */				
 		int flag;		
 		for(i_reproduction_season = 0; i_reproduction_season < 12; i_reproduction_season++)
 		{
@@ -117,19 +116,19 @@ int main(int argc, char *argv[])
 			{
 				case 0: 	// 0 - 0 : "Nothing"
 					printf("Nothing");
-					kill(pid, SIGUSR1);
+					kill(getppid(), SIGUSR1);
 				break;
 				case 1: 	// 0 - 1 : "Only hunting"
 					printf("Only ");
-					kill(pid, SIGUSR2);
+					kill(getppid(), SIGUSR2);
 				break;
 				case 10: 	// 1 - 0 : "Only reproduction"
 					printf("Only reproduction");
-					kill(pid, SIGUSR1);
+					kill(getppid(), SIGUSR1);
 				break;
 				case 11: 	// 1 - 1 : "Reproduction and hunting"
 					printf("Reproduction and ");
-					kill(pid, SIGUSR2);
+					kill(getppid(), SIGUSR2);
 				break;
 			}
 			//sleep(1);
