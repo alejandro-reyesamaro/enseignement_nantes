@@ -1,0 +1,85 @@
+\documentclass[10pt,a4]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[section]{placeins}
+
+\newcommand{\comi}{\textquotedblleft}
+\newcommand{\come}{\textquotedblright}
+
+\renewcommand{\baselinestretch}{1.25}
+%\pgfdeclareimage[width=3in, height=2in]{imagen1}{img1}
+
+\parindent=0pt
+%\parskip=8pt
+
+\usepackage{turnstile}
+\newcommand{\dednat}[2]{#1\hspace{10pt}$\sdtstile{N}{}$\hspace{10pt}#2}
+\newcommand{\Dednat}[1]{$\sdtstile{N}{}$\hspace{10pt}#1}
+\newcommand{\imp}{\Rightarrow}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\textwidth}{1.7in}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+
+\newcommand{\corrFND}{
+\underline{Correction :}\\
+\begin{tabular}{lll}
+\underline{$A = 0$}: & $\left(0 \land \left(B\imp \lnot (0\lor C)\right)\right) \imp (C \lor \lnot 0)$ &\\
+& $0 \imp 1$ &\\
+& \textbf{true} & alors : $\lnot A\lor\dots$\\
+\underline{$A = 1$}: & $\left(1 \land \left(B\imp \lnot (1\lor C)\right)\right) \imp (C \lor \lnot 1)$ & \\
+& $\left(B\imp \lnot (1\lor C)\right) \imp C$& \\
+& \underline{$B = 1$}: &\\
+& $(1 \imp 0)\imp C$&\\
+& $0\imp C$&\\
+& \textbf{true}& alors : $\lnot A\lor(A\land B)\lor \dots$\\
+& \underline{$B = 0$}: &\\
+& $(0 \imp 0)\imp C$&\\
+& $1\imp C$&\\
+& Si $C = 1$ alors \textbf{true} & donc, $FND_{\Phi_1} = \lnot A\lor(A\land B)\lor (A\land \lnot B \land C)$\\
+& Si $C = 0$ alors \textit{false}.
+\end{tabular}
+
+En utilisant l'arbre précédent, nous pouvons voir que la seule interprétation qui fait $\Phi_1$ fausse, est la suivante :
+$$A\land \lnot B \land \lnot C$$
+Alors, sa négation nous rend la $FNC$ de $\Phi_1$ : 
+$$FNC_{\Phi_1} = \lnot(A\land \lnot B \land \lnot C) \equiv \lnot A \lor B \lor C$$
+}
+
+\newcommand{\corrFN}{
+\underline{Correction :}\\
+\begin{tabular}{rc}
+& $\left(A \land \left(B\imp \lnot (A\lor C)\right)\right)\imp (C \lor \lnot A)$\\
+$\equiv$ & $\lnot\left(A \land \left(B\imp \lnot (A\lor C)\right)\right)\lor (C \lor \lnot A)$\\
+$\equiv$ & $\left(\lnot A \lor \lnot\left(\lnot B\lor \lnot (A\lor C)\right)\right)\lor (C \lor \lnot A)$\\
+$\equiv$ & $\lnot A \lor \left(B\land (A\lor C)\right)\lor C \lor \lnot A$\\
+$\equiv$ & $\lnot A \lor \left((B\land A)\lor (B\land C)\right)\lor C$\\
+$\equiv$ & $\lnot A \lor (B\land A)\lor (B\land C)\lor C$\\
+$\equiv$ & $\lnot A \lor (B\land A)\lor C$\\
+$\equiv$ & $\left((\lnot A \lor B) \land (\lnot A \lor A)\right)\lor C$\\
+$\equiv$ & $\left((\lnot A \lor B) \land 1\right)\lor C$\\
+$\equiv$ & $\lnot A \lor B \lor C$\\
+\end{tabular}\\
+Alors, $FND_{\Phi_1}=FNC_{\Phi_1}=\lnot A \lor B \lor C$
+}
+
+\begin{document}
+
+{\bf{{\large Exercice 3:}} } 
+
+Soit la formule suivante $\Phi_1 = \left(A \land \left(B\imp \lnot (A\lor C)\right)\right)\imp (C \lor \lnot A)$.
+
+\begin{itemize}
+\item Calculer ses formes normales disjonctive et conjonctive (FND et FNC) par équivalences.
+\item[] \corrFN
+\item Calculer ses FNC et FND par la méthode de Quine.
+\item[] \corrFND
+\end{itemize}
+
+\end{document}
